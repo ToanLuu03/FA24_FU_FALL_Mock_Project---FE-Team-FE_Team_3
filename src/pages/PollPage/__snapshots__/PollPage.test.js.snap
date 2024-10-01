@@ -1,0 +1,79 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`PollPage render PollPage 1`] = `
+<div>
+  <div
+    class="sc-aYaIB fxIVEF"
+  >
+    <h1
+      class="sc-gEvDqW"
+    >
+      Poll by 
+    </h1>
+    <h1
+      class="sc-gEvDqW"
+    >
+      Would You Rather
+    </h1>
+    <div
+      class="ant-row css-dev-only-do-not-override-m4timi"
+      style="margin-left: -4px; margin-right: -4px; width: 80%;"
+    >
+      <div
+        class="ant-col ant-col-12 css-dev-only-do-not-override-m4timi"
+        style="padding-left: 4px; padding-right: 4px;"
+      >
+        <div
+          class="ant-card ant-card-bordered css-dev-only-do-not-override-m4timi"
+          style="text-align: center;"
+        >
+          <div
+            class="ant-card-body"
+          >
+            -
+            <div
+              class="sc-eqUzNf kAyPmj"
+            >
+              <button
+                class="ant-btn css-dev-only-do-not-override-m4timi ant-btn-primary ant-btn-block sc-fqkwJk dPkbA-D"
+                type="button"
+              >
+                <span>
+                  Click
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="ant-col ant-col-12 css-dev-only-do-not-override-m4timi"
+        style="padding-left: 4px; padding-right: 4px;"
+      >
+        <div
+          class="ant-card ant-card-bordered css-dev-only-do-not-override-m4timi"
+          style="text-align: center;"
+        >
+          <div
+            class="ant-card-body"
+          >
+            -
+            <div
+              class="sc-eqUzNf kAyPmj"
+            >
+              <button
+                class="ant-btn css-dev-only-do-not-override-m4timi ant-btn-primary ant-btn-block sc-fqkwJk dPkbA-D"
+                type="button"
+              >
+                <span>
+                  Click
+                </span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

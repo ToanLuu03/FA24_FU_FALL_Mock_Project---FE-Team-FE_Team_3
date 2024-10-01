@@ -1,0 +1,43 @@
+.trainer-container {
+  width: 100%;
+  margin: 20px 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Table styling */
+.trainer-table {
+  width: 100%;
+  border-collapse: collapse; /* Đảm bảo các đường viền liền nhau */
+  border: 1px solid #e8e8e8;
+}
+
+.header-row {
+  background-color: #f5f5f5; /* Màu nền cho hàng header */
+  font-weight: bold;
+  text-align: left;
+  margin-left: 30px;
+}
+
+.header-cell, .data-cell {
+  border: 1px solid #e8e8e8; 
+  padding: 10px;
+}
+
+
+.header-cell.note, .data-cell.note {
+  width: 400px; /* Điều chỉnh độ rộng của cột Note */
+}
+
+.data-row:hover{
+  background-color: #e6e6e6;
+
+}
+
+/* .data-row:nth-child(odd) {
+  background-color: #fafafa; 
+  
+}
+
+.data-row:nth-child(even) {
+  background-color: #ffffff; 
+} */
