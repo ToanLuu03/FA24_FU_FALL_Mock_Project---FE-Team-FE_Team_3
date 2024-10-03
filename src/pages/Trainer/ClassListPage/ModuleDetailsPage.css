@@ -1,0 +1,16 @@
+.titleMenu {
+    font-size: 1.6rem !important;
+    letter-spacing: -.025em !important;
+    font-weight: 700 !important;
+}
+
+.button-container {
+    display: flex;
+    align-items: center; /* Vertically center the items */
+    justify-content: flex-start; /* Align items to the left */
+    margin-right: 1100px; /* Add some space above the button */
+  }
+  
+  
+  
+ 

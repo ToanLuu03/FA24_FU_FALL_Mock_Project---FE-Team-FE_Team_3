@@ -7,9 +7,7 @@
 }
 
 .ant-select-selector {
-    width: 242px;
     min-height: 42px; /* Increase the minimum height */
-    padding: 4px 11px !important; /* Add padding */
     display: flex;
     align-items: center;
 }

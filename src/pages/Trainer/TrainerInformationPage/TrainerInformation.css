@@ -1,71 +1,131 @@
-/* General styles for the container */
+/* General container style */
 .trainer-container {
-    padding: 20px;
-    background: #fff;
-    min-height: 100vh;
-    width: 100%;
-  }
-  
-  /* General Info grid layout */
-  .general-info-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0;
-    border: 1px solid #e8e8e8;
-    padding: 10px;
-    border-radius: 5px;
-  }
-  
-  /* General Info row */
-  .general-info-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding-bottom: 10px;
-    border-bottom: 1px solid #e8e8e8;
-    padding-right: 75px;
-  }
-  
-  /* Remove border from last few rows */
-  .general-info-row:last-of-type {
-    border-bottom: none;
-  }
-  
-  /* Apply right border except for the last column */
-  .general-info-row:not(:nth-child(3n)) {
-    border-right: 1px solid #e8e8e8;
-  }
-  
-  /* Label (left column) */
-  .general-info-label {
-    width: 40%;
-    background-color: #f0f0f0;
-    padding: 5px;
-  }
-  
-  /* Value (right column) */
-  .general-info-value {
-    width: 60%;
-    text-align: right;
-    border-left: 1px solid #e8e8e8;
-    padding-left: 10px;
-  }
-  
-  /* Table styles for professional skills */
-  .skills-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-  }
-  
-  .skills-table th,
-  .skills-table td {
-    border: 1px solid #e8e8e8;
-    padding: 8px;
-  }
-  
-  /* Header row background color */
-  .skills-table th {
-    background-color: #f0f0f0;
-  }
-  
+  padding: 20px;
+  width: 100%;
+  min-height: 100vh;
+}
+
+/* Style for the collapse panels */
+.ant-collapse-item {
+  background-color: #f9f9f9; /* Light background for panels */
+  border-radius: 8px;
+  margin-bottom: 12px; /* Space between panels */
+  border: none;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adding shadow */
+  transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+}
+
+.ant-collapse-item:hover {
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
+}
+
+.ant-collapse-header {
+  font-weight: bold; /* Bold title */
+  font-size: 16px;
+}
+
+.ant-collapse-header .anticon {
+  color: #999; /* Arrow color */
+}
+
+.ant-collapse-header:hover {
+  background-color: #f0f0f0;
+  border-radius: 8px;
+}
+
+/* Remove borders around the collapse */
+.ant-collapse {
+  border: none;
+}
+
+
+/* General Info grid layout */
+.general-info-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border: 1px solid #e8e8e8;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+/* General Info row */
+.general-info-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #e8e8e8;
+  padding-right: 75px;
+  box-sizing: border-box;
+}
+
+/* Remove border from the last row */
+.general-info-row:last-of-type {
+  border-bottom: none;
+}
+
+/* Right border except for the last column */
+.general-info-row:not(:nth-child(3n)) {
+  border-right: 1px solid #e8e8e8;
+}
+
+/* Label styles */
+.general-info-label {
+  width: 40%;
+  background-color: #f0f0f0;
+  padding: 5px;
+  box-sizing: border-box;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Value styles */
+.general-info-value {
+  width: 60%;
+  text-align: right;
+  border-left: 1px solid #e8e8e8;
+  padding-left: 10px;
+  box-sizing: border-box;
+  color: #666;
+}
+
+/* Professional Skills Table */
+.skills-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+
+.skills-table th,
+.skills-table td {
+  border: 1px solid #e8e8e8;
+  padding: 8px;
+  text-align: left;
+}
+
+.skills-table th {
+  background-color: #f0f0f0;
+  color: #333;
+  font-weight: bold;
+}
+
+/* Skills Input Fields */
+.skills-input,
+.general-input,
+.general-select,
+.skills-select {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Button group for editing skills */
+.edit-buttons {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.edit-buttons button {
+  width: 100px;
+}

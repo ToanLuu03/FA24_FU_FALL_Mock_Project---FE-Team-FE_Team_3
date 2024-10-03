@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Select, Checkbox, Input } from "antd";
 import './SelectWithCheckboxes.css';
 
-const SelectWithCheckboxes = ({ options, selectedState, setState, placeholder }) => {
+const SelectWithCheckboxes = ({ options, selectedState, setState, placeholder, inputStyle }) => {
     const [searchValue, setSearchValue] = useState("");
 
     const handleSelectAll = () => {
@@ -21,9 +21,12 @@ const SelectWithCheckboxes = ({ options, selectedState, setState, placeholder })
         <Select
             mode="multiple"
             placeholder={placeholder}
-            style={{ width: 250 }}
             onChange={setState}
             value={selectedState}
+            style={{
+
+                ...inputStyle, // Spread the custom inputStyle here
+            }}
             dropdownRender={() => (
                 <div className="custom-dropdown">
                     <div className="search-container">
@@ -33,7 +36,7 @@ const SelectWithCheckboxes = ({ options, selectedState, setState, placeholder })
                             onChange={(e) => setSearchValue(e.target.value)}
                         />
                     </div>
-                    
+
                     <div className="dropdown-container">
                         <Checkbox
                             onChange={handleSelectAll}

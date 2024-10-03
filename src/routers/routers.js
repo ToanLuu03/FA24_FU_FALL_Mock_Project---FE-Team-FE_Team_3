@@ -1,67 +1,89 @@
 import { Navigate, createBrowserRouter } from "react-router-dom";
 import HomePage from "../pages/HomePage/HomePage";
-import LoginPage from "../pages/LoginPage/LoginPage";
 import ErrorPage from "../pages/ErrorPage/ErrorPage";
 import { PATH_NAME } from "../constants/pathName";
-import LeaderBoardPage from "../pages/LeaderBoardPage/LeaderBoardPage";
-import PollPage from "../pages/PollPage/PollPage";
-import MainLayout from "../pages/MainLayout/MainLayout";
-import CreatePollPage from "../pages/CreatePollPage/CreatePollPage";
-import { getUser } from "../helpers/user";
-import Portalpage from "../pages/Trainer/PortalPage/PortalPage";
+import MainLayoutTrainer from "../pages/Trainer/MainLayout/MainLayout";
+import MainLayoutAdmin from "../pages/Admin/MainLayout/MainLayout"
 import TrainerManagement from "../pages/Trainer/TrainerManagementPage/TrainerManagementPage";
-const PrivateRoute = ({ children }) => {
-  const userLocalStorage = getUser();
+import RolePage from "../pages/RolePage/RolePage";
+import { useSelector } from "react-redux"; // Import useSelector to access the Redux store
+import ScheduleTracker from "../pages/Admin/ScheduleTrackerPage/ScheduleTrackerPage";
+import ModuleDetailsPage from "../pages/Trainer/ClassListPage/ModuleDetailsPage";
 
-  if (!userLocalStorage) {
-    return <Navigate to={PATH_NAME.LOGIN} replace />;
+const PrivateRouteTrainer = ({ children }) => {
+  const selectedRole = useSelector((state) => state.role.selectedRole); // Access the selected role from the Redux store
+  console.log("Selected Role:", selectedRole); // Log selected r
+  // If no user found, redirect to RolePage instead of login
+  if (!selectedRole) {
+    return <Navigate to={PATH_NAME.ROLE} replace />;
   }
-  return children;
+  else if (selectedRole === 'trainer') {
+    return children;
+  }
+};
+
+const PrivateRouteAdmin = ({ children }) => {
+  const selectedRole = useSelector((state) => state.role.selectedRole);
+  console.log("Selected Role:", selectedRole);
+  if (!selectedRole) {
+    return <Navigate to={PATH_NAME.ROLE} replace />;
+  }
+  else if (selectedRole === 'admin') {
+    return children;
+  }
 };
 
 export const router = createBrowserRouter([
   {
-    path: PATH_NAME.HOME,
+    path: PATH_NAME.TRAINER,
     element: (
-      <PrivateRoute>
-        <MainLayout />
-      </PrivateRoute>
+      <PrivateRouteTrainer>
+        <MainLayoutTrainer />
+      </PrivateRouteTrainer>
     ),
     children: [
-      { index: true, element: <HomePage /> },
       {
-        path: "leaderboard",
-        element: <LeaderBoardPage />,
-      },
-      {
-        path: "add",
-        element: <CreatePollPage />,
-      },
-      {
-        path: "questions/:questionId",
-        element: <PollPage />,
-      },
-      {
-        path: PATH_NAME.PORTAL_Trainer,
-        element: <Portalpage />,
+        index: true,
+        element: <HomePage />,
       },
       {
         path: PATH_NAME.Trainer_Management,
-        element: <TrainerManagement/>,
+        element: <TrainerManagement />,
+      },
+      {
+        path: PATH_NAME.MODULE_DETAILS, // Add this new route
+        element: <ModuleDetailsPage />,
       },
     ],
   },
   {
-    path: PATH_NAME.CREATE_POLL,
-    element: <CreatePollPage />,
+    path: PATH_NAME.ADMIN,
+    element: (
+      <PrivateRouteAdmin>
+        <MainLayoutAdmin />
+      </PrivateRouteAdmin>
+    ),
+    children: [
+      {
+        index: true,
+        element: <HomePage />,
+      },
+      {
+        path: PATH_NAME.SCHEDULE_TRACKER,
+        element: <ScheduleTracker />,
+      },
+    ],
   },
   {
-    path: PATH_NAME.LOGIN,
-    element: <LoginPage />,
+    path: PATH_NAME.ROLE,
+    element: <RolePage />,
   },
   {
-    path: "*",
+    path: PATH_NAME.HOME,
+    element: <RolePage />,
+  },
+  {
+    path: PATH_NAME.ERROR_404,
     element: <ErrorPage />,
   },
 ]);
-

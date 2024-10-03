@@ -1,5 +1,4 @@
 import { IMAGES } from "../assets";
-
 let users = {
   sarahedo: {
     id: "sarahedo",

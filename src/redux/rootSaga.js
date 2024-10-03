@@ -1,12 +1,10 @@
 import { all } from "redux-saga/effects";
-import { authWatcher } from "../features/auth/authSaga";
-import { homeWatcher } from "../features/home/homeSaga";
-import { usersWatcher } from "../features/users/usersSaga";
-import { questionsWatcher } from "../features/questions/questionsSaga";
+import { roleWatcher } from "../features/role/roleSaga";
+import { portalWatcher } from "../features/portal/portalSaga";
 
 export function* rootSaga() {
-  yield all([...authWatcher]);
-  yield all([...homeWatcher]);
-  yield all([...usersWatcher]);
-  yield all([...questionsWatcher]);
+  yield all([
+    roleWatcher(),
+    portalWatcher()
+  ]);
 }

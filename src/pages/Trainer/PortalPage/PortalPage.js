@@ -35,10 +35,12 @@ const PortalPage = () => {
             label: 'GPA',
             children: (
                 <>
+                 <div className="portal-page">
                     <div className="select-container">
                         <div>
-                            <h2>Select Topics</h2>
+                            <h4>Select Topics</h4>
                             <SelectWithCheckboxes
+                                inputStyle={{width: 250}}
                                 options={topicsDataStatic}
                                 selectedState={selectedTopics}
                                 setState={setSelectedTopics}
@@ -46,8 +48,9 @@ const PortalPage = () => {
                             />
                         </div>
                         <div>
-                            <h2>Select Classes</h2>
+                            <h4>Select Classes</h4>
                             <SelectWithCheckboxes
+                                inputStyle={{width: 250}}
                                 options={classesDataStatic}
                                 selectedState={selectedGpaClasses}
                                 setState={setSelectedGpaClasses}
@@ -55,16 +58,17 @@ const PortalPage = () => {
                             />
                         </div>
                         <div>
-                            <h2>Select Date Range</h2>
+                            <h4>Select Date Range</h4>
                             <RangePicker
                                 value={dateRange}
                                 onChange={handleDateRangeChange}
                                 format="YYYY"
                                 picker="year"
                                 placeholder={['Start Year', 'End Year']}
-                                
+
                             />
                         </div>
+                    </div>
                     </div>
 
                     {selectedTopics.length > 0 && selectedGpaClasses.length > 0 && dateRange[0] && dateRange[1] && (
@@ -86,6 +90,7 @@ const PortalPage = () => {
                         <div>
                             <h2>Select Metrics</h2>
                             <SelectWithCheckboxes
+                                inputStyle={{width: 250}}
                                 options={metricsDataStatic}
                                 selectedState={selectedMetrics}
                                 setState={setSelectedMetrics}
@@ -95,6 +100,7 @@ const PortalPage = () => {
                         <div>
                             <h2>Select Classes</h2>
                             <SelectWithCheckboxes
+                                inputStyle={{width: 250}}
                                 options={classesDataStatic}
                                 selectedState={selectedFeedbackClasses}
                                 setState={setSelectedFeedbackClasses}

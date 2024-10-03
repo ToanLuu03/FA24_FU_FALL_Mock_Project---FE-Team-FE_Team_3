@@ -6,9 +6,12 @@
     "@ant-design/icons": "^5.3.7",
     "@reduxjs/toolkit": "^2.2.5",
     "antd": "^5.21.1",
+    "axios": "^1.7.7",
     "bootstrap": "^5.3.3",
+    "date-fns": "^4.1.0",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.5",
+    "react-datepicker": "^7.4.0",
     "react-dom": "^18.3.1",
     "react-icons": "^5.3.0",
     "react-redux": "^8.0.5",
@@ -18,7 +21,8 @@
     "redux": "^4.2.1",
     "redux-saga": "^1.2.2",
     "styled-components": "^6.1.11",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "xlsx": "^0.18.5"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -54,6 +58,7 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "jest-transform-stub": "^2.0.0",
+    "json-server": "^1.0.0-beta.3",
     "react-test-renderer": "^18.3.1"
   }
 }

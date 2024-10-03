@@ -1,10 +1,11 @@
 
 export const PATH_NAME = {
-  LOGIN: "/login",
+  ROLE: "/role",
+  TRAINER: "/trainer",
+  ADMIN: "/admin",
+  ERROR_404: "*",
+  Trainer_Management: "/trainer/trainer_management",
+  SCHEDULE_TRACKER: "/admin/schedule_tracker",
   HOME: "/",
-  LEADER_BOARD: "/leaderboard",
-  POLL: "questions/questionId",
-  CREATE_POLL: "/add",
-  ERROR_403: "/403",
-  Trainer_Management: "/trainer/trainer_management"
+  MODULE_DETAILS: "/trainer/trainer_management/module/:id",
 };

@@ -43,8 +43,9 @@ const trainTheTrainerCertificateList = [
 const TrainerInformation = () => {
   const { selectMenuItem } = useOutletContext();
   useEffect(() => {
-      selectMenuItem('3');
+    selectMenuItem('3');
   }, [selectMenuItem]);
+
   const [isEditingGeneral, setIsEditingGeneral] = useState(false);
   const [isEditingSkills, setIsEditingSkills] = useState(false);
   const [generalInfo, setGeneralInfo] = useState([
@@ -138,7 +139,7 @@ const TrainerInformation = () => {
                       <Select
                         value={item.value}
                         onChange={(value) => handleChangeGeneralSelect(index, value)}
-                        style={{ width: '100%' }}
+                        className="general-select"
                       >
                         {item.label === 'Status' && statusList.map((status) => (
                           <Option key={status.key} value={status.label}>
@@ -165,6 +166,7 @@ const TrainerInformation = () => {
                       <Input
                         value={item.value}
                         onChange={(event) => handleChangeGeneral(index, event)}
+                        className="general-input"
                       />
                     )
                   ) : (
@@ -177,19 +179,16 @@ const TrainerInformation = () => {
             ))}
           </div>
           {isEditingGeneral ? (
-            <div style={{ marginTop: '20px' }}>
+            <div className="edit-buttons">
               <Button type="primary" onClick={handleSaveGeneralClick}>
                 Save
               </Button>
-              <Button
-                style={{ marginLeft: '10px' }}
-                onClick={handleCancelGeneralClick}
-              >
+              <Button onClick={handleCancelGeneralClick}>
                 Cancel
               </Button>
             </div>
           ) : (
-            <Button type="primary" style={{ marginTop: '20px' }} onClick={handleEditGeneralClick}>
+            <Button type="primary" onClick={handleEditGeneralClick}>
               Edit General Info
             </Button>
           )}
@@ -215,7 +214,7 @@ const TrainerInformation = () => {
                       <Select
                         value={skill.skills}
                         onChange={(value) => handleChangeSkills(index, 'skills', value)}
-                        style={{ width: '100%' }}
+                        className="skills-select"
                       >
                         {skillsList.map((skillOption) => (
                           <Option key={skillOption.key} value={skillOption.label}>
@@ -232,7 +231,7 @@ const TrainerInformation = () => {
                       <Select
                         value={skill.level}
                         onChange={(value) => handleChangeSkills(index, 'level', value)}
-                        style={{ width: '100%' }}
+                        className="skills-select"
                       >
                         <Option value="Advanced">Advanced</Option>
                         <Option value="Intermediate">Intermediate</Option>
@@ -247,6 +246,7 @@ const TrainerInformation = () => {
                       <Input
                         value={skill.note}
                         onChange={(event) => handleChangeSkills(index, 'note', event.target.value)}
+                        className="skills-input"
                       />
                     ) : (
                       skill.note
@@ -257,19 +257,16 @@ const TrainerInformation = () => {
             </tbody>
           </table>
           {isEditingSkills ? (
-            <div style={{ marginTop: '20px' }}>
+            <div className="edit-buttons">
               <Button type="primary" onClick={handleSaveSkillsClick}>
                 Save
               </Button>
-              <Button
-                style={{ marginLeft: '10px' }}
-                onClick={handleCancelSkillsClick}
-              >
+              <Button onClick={handleCancelSkillsClick}>
                 Cancel
               </Button>
             </div>
           ) : (
-            <Button type="primary" style={{ marginTop: '20px' }} onClick={handleEditSkillsClick}>
+            <Button type="primary" onClick={handleEditSkillsClick}>
               Edit Professional Skills
             </Button>
           )}
