@@ -46,7 +46,7 @@ const MainLayout = () => {
   );
 
   return (
-    <Layout style={{ height: '100vh' }}>
+    <Layout className='LayoutTrainer'>
       <Sider
         className="styled-sider"
         trigger={null}

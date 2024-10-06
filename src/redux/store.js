@@ -18,7 +18,7 @@ export const store = configureStore({
     ...getDefaultMiddleware({ serializableCheck: false }),
     sagaMiddleware,
   ],
-  preloadedState, 
+  preloadedState,
 });
 
 sagaMiddleware.run(rootSaga);

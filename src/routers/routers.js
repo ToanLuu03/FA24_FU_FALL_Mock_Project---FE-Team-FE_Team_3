@@ -9,6 +9,7 @@ import RolePage from "../pages/RolePage/RolePage";
 import { useSelector } from "react-redux"; // Import useSelector to access the Redux store
 import ScheduleTracker from "../pages/Admin/ScheduleTrackerPage/ScheduleTrackerPage";
 import ModuleDetailsPage from "../pages/Trainer/ClassListPage/ModuleDetailsPage";
+import TrainerManagementPage from "../pages/Admin/TrainerManagement/TrainerManagementPage";
 
 const PrivateRouteTrainer = ({ children }) => {
   const selectedRole = useSelector((state) => state.role.selectedRole); // Access the selected role from the Redux store
@@ -71,7 +72,10 @@ export const router = createBrowserRouter([
       {
         path: PATH_NAME.SCHEDULE_TRACKER,
         element: <ScheduleTracker />,
-      },
+      },{
+        path: "/admin/trainer_management",
+        element: <TrainerManagementPage />,
+      }
     ],
   },
   {

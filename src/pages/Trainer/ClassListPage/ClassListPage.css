@@ -1,24 +1,13 @@
-/* Container and layout adjustments */
 .layout-container {
     min-height: 200vh;
 }
 
-/* Search bar styling */
 .search-container {
     display: flex;
-    gap: 10px; /* Reduced gap between each input field */
     margin-bottom: 16px;
     box-shadow: none;
-    justify-content: start; /* Aligns fields closer together */
-}
+  }
 
-.search-container > .ant-col {
-    flex: 1; /* Ensures that each column takes equal width */
-    min-width: 150px; /* Set a minimum width for each input field */
-    max-width: 200px; /* Optional: limits maximum width to avoid them being too large */
-}
-
-/* Collapse and panel styles */
 .custom-collapse {
     background: #F3F3F3;
     margin-bottom: 20px;
@@ -33,16 +22,14 @@
     font-weight: bold;
 }
 
-/* Tag styles */
 .ant-tag {
-    border-radius: 20px;
-    padding: 4px 12px;
+    border-radius: 20px; /* Increased border radius */
+    padding: 4px 12px; /* Optional: Adjust padding for better appearance */
 }
 
-/* Status styles */
 .status-in-progress {
     background-color: #D8FAE6;
-    color: #648A77;
+    color: #648A77
 }
 
 .status-not-started {
@@ -60,12 +47,13 @@
     color: #CF1322;
 }
 
-/* Table styling */
+/* Add borders to all cells */
 .ant-table-thead > tr > th,
 .ant-table-tbody > tr > td {
     border: 1px solid #e8e8e8;
 }
 
+/* Remove double borders */
 .ant-table-thead > tr > th:not(:last-child),
 .ant-table-tbody > tr > td:not(:last-child) {
     border-right: none;
@@ -75,14 +63,14 @@
     border-bottom: none;
 }
 
+/* Adjust cell padding */
 .ant-table-thead > tr > th,
 .ant-table-tbody > tr > td {
     padding: 12px 16px;
 }
 
-/* Center content within select options */
 .option-content {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+  }

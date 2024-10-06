@@ -1,0 +1,67 @@
+.toolbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.date-display {
+    font-weight: bold;
+    font-size: 24px;
+    color: #333;
+}
+
+.toolbar-buttons {
+    display: flex;
+}
+
+.toolbar-buttons .ant-btn {
+    border-radius: 0;
+}
+
+.toolbar-buttons .ant-btn:first-child {
+    border-top-left-radius: 7px;
+    border-bottom-left-radius: 7px;
+}
+
+.toolbar-buttons .ant-btn:last-child {
+    border-top-right-radius: 7px;
+    border-bottom-right-radius: 7px;
+}
+
+.toolbar-buttons .ant-btn-default,
+.toolbar-buttons .ant-btn-primary {
+    background-color: #2C3E50;
+    color: white;
+    border-color: #2C3E50;
+    height: 48px;
+    width: 80px;
+}
+
+.toolbar-buttons .ant-btn-default:hover {
+    background-color: #1A252F;
+    color: white;
+    border-color: #1A252F;
+}
+
+.toolbar-buttons .ant-btn-primary {
+    background-color: #1A252F;
+    border-color: #1A252F;
+    height: 48px;
+    width: 80px;
+}
+
+.toolbar-buttons .ant-btn-primary:hover {
+    background-color: #1A252F;
+    border-color: #1A252F;
+}
+
+.today-button .ant-btn-primary {
+    background-color: #2C3E50;
+    border-color: #2C3E50;
+    height: 48px;
+    width: 100px;
+}

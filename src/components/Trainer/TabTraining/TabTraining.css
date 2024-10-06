@@ -1,4 +1,22 @@
-.notification {
+.container {
+    margin: 20px;
+}
+
+.row {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.col {
+    flex: 1;
+    margin-right: 10px;
+}
+
+.col:last-child {
+    margin-right: 0;
+}
+
+.empty-state-report {
     text-align: center;
     margin-top: 150px;
     font-size: 40px;
@@ -6,57 +24,10 @@
     color: #a3a3a3;
 }
 
-.trainSelect {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    gap: 10px;
+.e-date {
+    margin-left: 100px;
 }
 
-.row {
-    display: flex;
-    flex-direction: column;
-    margin: 10px;
-    width: 180px;
-}
-
-.row span {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.dateTrain {
-    width: 180px;
-}
-
-.searchSection {
-    width: 150px;
-    padding-top: 10px;
-}
-
-.table-container {
-    margin-top: 30px;
-    padding: 20px;
-}
-
-.table-container .ant-table {
-    margin: 0 auto;
-}
-
-.table-container .ant-table-thead>tr>th {
-    background-color: #f7f7f7;
-}
-
-.table-container .ant-table-row {
-    height: 60px;
-    line-height: 60px;
-}
-
-.table-container .ant-table-cell {
-    padding: 16px;
-}
-
-.dateStartEnd {
-    gap: 9rem;
+.select-training {
+    max-width: 150px;
 }

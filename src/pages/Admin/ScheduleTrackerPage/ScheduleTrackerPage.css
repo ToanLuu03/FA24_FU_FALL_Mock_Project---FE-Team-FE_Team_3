@@ -12,12 +12,6 @@
     gap: 10px;
 }
 
-.classname {
-    display: flex;
-    gap: 10px;
-    padding-bottom: 15px;
-}
-
 .trainername-1 {
     width: 25%;
 }
@@ -52,6 +46,11 @@
 
 }
 
+.ant-select-multiple {
+    width: 200px !important;
+}       
+
+
 :where(.css-dev-only-do-not-override-5wsri9).ant-space-gap-row-small {
     row-gap: 0px;
 }
@@ -61,24 +60,22 @@
 }
 
 
-/* Base container styling */
 .schedule-tracker-container {
     padding: 20px;
 }
 
-/* Styling for the section where track by method is selected */
 .text {
     font-weight: 600;
     font-size: 14px;
     color: #333;
 }
 
-/* Layout for ClassName and Module sections */
 .classname {
     display: flex;
     gap: 20px;
-    margin-top: 20px;
     align-items: flex-start;
+    display: flex;
+    gap: 10px;
 }
 
 .filters {
@@ -92,7 +89,6 @@
     width: 200px;
 }
 
-/* DatePicker section */
 .d-flex {
     display: flex;
 
@@ -112,7 +108,6 @@
     width: 100px;
 }
 
-/* Layout adjustment for the search button and other elements */
 .filter-button {
     display: flex;
     justify-content: flex-end;
@@ -150,47 +145,24 @@
     }
 }
 
-/* .select {
-    width: 200px;
-} */
-
 .choose-select {
     width: 150px;
-    height: 42px;
+
     font-size: 14px;
 }
-
-
-
-div.ant-select-selector {
-    width: 180px;
-}
-
-
-
-
-
 
 :where(.css-dev-only-do-not-override-5wsri9).ant-input {
     border-radius: 0px;
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
-   /* // justify-content: space-evenly; */
 }
 
 
-.icon {
-    display: flex;
-    align-items: center;
-    border: 1px;
-    border-radius: 6px;
-}
 
 .search-icon {
-    size: 40px;
-    font-size: 20px;
-    border: 1px red;
-    border-radius: 6px;
+    font-size: 18px;
+    color: #888;
+    size: 35px;
 }
 
 .icon {
@@ -198,20 +170,10 @@ div.ant-select-selector {
     justify-content: center;
     align-items: center;
     border: 1px solid #ccc;
-    /* Border around the icon */
     border-top-right-radius: 8px;
     border-bottom-right-radius: 8px;
-    width: 42px;
-    border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;
-    height: 42px;
-}
-
-.search-icon {
-    font-size: 20px;
-    /* Adjust icon size */
-    color: #888;
-    /* Adjust icon color */
+    width: 32px;
+    height: 32px;
 }
 
 
@@ -245,12 +207,15 @@ div.ant-select-selector {
     border: none;
 }
 
-
-
 :where(.css-dev-only-do-not-override-5wsri9).ant-select-multiple .ant-select-selection-overflow {
     flex-wrap: nowrap;
 }
 
 .ant-select-selection-item-content {
     font-size: 14px;
+}
+
+.search {
+    height: 32px;
+    width: 165px;
 }

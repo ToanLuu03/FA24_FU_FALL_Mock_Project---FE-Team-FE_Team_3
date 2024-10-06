@@ -1,4 +1,4 @@
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useMemo, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LabelList } from "recharts";
 import { fetchGpaDataStart } from "../../../features/portal/portalSlice";

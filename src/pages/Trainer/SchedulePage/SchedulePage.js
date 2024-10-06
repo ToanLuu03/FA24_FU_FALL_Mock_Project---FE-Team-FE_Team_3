@@ -1,8 +1,9 @@
 import React from 'react'
+import Scheduler from '../../../components/Trainer/Schedule/Scheduler/Scheduler'
 
 function Schedule() {
   return (
-    <div >Schedule</div>
+    <div><Scheduler /></div>
   )
 }
 

@@ -1,0 +1,97 @@
+
+.tab-report-container {
+  padding: 20px;
+}
+.class-input{
+  width: 180px;
+}
+
+.module-input{
+  width: 150px;
+}
+.report-date{
+  width: 200px;
+  margin-right: 100px;
+}
+
+.tab-report-header {
+  display: flex;
+  justify-content: flex-start; 
+  margin-bottom: 20px;
+}
+
+.tab-report-info {
+  display: flex;
+  gap: 30px; 
+  
+}
+
+.start-date {
+  margin-left: 500px;
+}
+
+.end-date{
+  margin-left: 130px;
+
+}
+
+.bold-text{
+  font-weight: bold;
+
+}
+
+.search{
+  margin-left: 100px;
+  
+}
+.tab-report-filters {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 20px;
+  font-weight: bold; 
+}
+
+.tab-report-filters > div {
+  display: flex;
+  flex-direction: column;
+}
+
+.tab-report-total-duration {
+  text-align: right;
+  margin-top: 10px;
+  font-weight: bold;
+}
+.tab-report-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.tab-report-table th,
+.tab-report-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.tab-report-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.tab-report-table td {
+  vertical-align: middle;
+}
+
+.table-header {
+  text-align: left;
+  font-weight: bold;
+  padding: 10px;
+}
+
+.tab-report-total-duration {
+  text-align: right;
+  margin-top: 20px;
+  font-weight: bold;
+  padding-right: 20px;
+}

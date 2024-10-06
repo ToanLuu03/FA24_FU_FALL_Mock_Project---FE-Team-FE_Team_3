@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import { Collapse, Table, Typography, Tag, Input, Select, Col, Button } from 'antd';
-import { CodeOutlined } from '@ant-design/icons';
+import { Collapse, Table, Typography, Tag, Input, Select, Col } from 'antd';
 import { Link, useNavigate } from 'react-router-dom';
 import './ClassListPage.css';
 
@@ -30,6 +29,7 @@ function ClassList() {
             e.preventDefault();
             navigate(`/trainer/trainer_management/module/${record.id}`, {
               state: { moduleData: record },
+              className: record.class 
             });
           }}
         >
@@ -81,6 +81,7 @@ function ClassList() {
       class: "HCM24_React_JS",
       modules: [
         {
+          class: "HCM24_React_JS",
           id: 1,
           no: 1,
           name: "React",
@@ -93,6 +94,8 @@ function ClassList() {
           note: "",
         },
         {
+          
+          class: "HCM24_React_JS",
           id: 2,
           no: 2,
           name: "Node.js",
@@ -110,6 +113,7 @@ function ClassList() {
       class: "HCM24_JAVA_JS",
       modules: [
         {
+          class: "HCM24_JAVA_JS",
           id: 3,
           no: 1,
           name: "JavaScript",
@@ -122,6 +126,7 @@ function ClassList() {
           note: "Nice",
         },
         {
+          class: "HCM24_.NET",
           id: 4,
           no: 2,
           name: "Java",
@@ -139,6 +144,7 @@ function ClassList() {
       class: "HCM24_.NET",
       modules: [
         {
+          class: "HCM24_.NET",
           id: 5,
           no: 1,
           name: "C#",
@@ -193,6 +199,7 @@ function ClassList() {
           <Input
             placeholder="Search class"
             onChange={(e) => setClassSearch(e.target.value)}
+            style={{ width: 200, marginRight: 16, boxShadow: 'none', border: '1px solid #d9d9d9' }}
           />
         </Col>
         <Col>
@@ -200,6 +207,7 @@ function ClassList() {
           <Input
             placeholder="Search module"
             onChange={(e) => setModuleSearch(e.target.value)}
+            style={{ width: 200, marginRight: 16, boxShadow: 'none', border: '1px solid #d9d9d9' }}
           />
         </Col>
         <Col>
@@ -207,6 +215,7 @@ function ClassList() {
           <Select
             placeholder="Select status"
             onChange={(value) => setStatusFilter(value)}
+            style={{ width: 200 }}
           >
             <Option value="In Progress">
               <div className="option-content">
