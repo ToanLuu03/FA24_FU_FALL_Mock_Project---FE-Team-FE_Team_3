@@ -6,6 +6,18 @@
     border-bottom: 1px solid #eaeaea;
 }
 
+.calendar-container::-webkit-scrollbar {
+    display: none;
+}
+
+.calendar-container {
+    scrollbar-width: none;
+}
+
+.calendar-container {
+    -ms-overflow-style: none;
+}
+
 .container-month-view {
     display: grid;
     grid-template-columns: repeat(7, 1fr);

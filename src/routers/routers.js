@@ -6,16 +6,15 @@ import MainLayoutTrainer from "../pages/Trainer/MainLayout/MainLayout";
 import MainLayoutAdmin from "../pages/Admin/MainLayout/MainLayout"
 import TrainerManagement from "../pages/Trainer/TrainerManagementPage/TrainerManagementPage";
 import RolePage from "../pages/RolePage/RolePage";
-import { useSelector } from "react-redux"; // Import useSelector to access the Redux store
+import { useSelector } from "react-redux";
 import ScheduleTracker from "../pages/Admin/ScheduleTrackerPage/ScheduleTrackerPage";
 import ModuleDetailsPage from "../pages/Trainer/ClassListPage/ModuleDetailsPage";
-import TrainerManagementPage from "../pages/Admin/TrainerManagement/TrainerManagementPage";
-
+import TrainerList from "../pages/Admin/TrainerListPage/TrainerList";
+import TrainerManagementAdmin from "../pages/Admin/TrainerManagementPage/TrainerManagementPage"
 const PrivateRouteTrainer = ({ children }) => {
-  const selectedRole = useSelector((state) => state.role.selectedRole); // Access the selected role from the Redux store
-  console.log("Selected Role:", selectedRole); // Log selected r
-  // If no user found, redirect to RolePage instead of login
-  if (!selectedRole) {
+  const selectedRole = useSelector((state) => state.role.selectedRole);
+  console.log("Selected Role:", selectedRole);
+  if (!selectedRole || selectedRole === 'admin') {
     return <Navigate to={PATH_NAME.ROLE} replace />;
   }
   else if (selectedRole === 'trainer') {
@@ -26,7 +25,7 @@ const PrivateRouteTrainer = ({ children }) => {
 const PrivateRouteAdmin = ({ children }) => {
   const selectedRole = useSelector((state) => state.role.selectedRole);
   console.log("Selected Role:", selectedRole);
-  if (!selectedRole) {
+  if (!selectedRole || selectedRole === 'trainer') {
     return <Navigate to={PATH_NAME.ROLE} replace />;
   }
   else if (selectedRole === 'admin') {
@@ -52,9 +51,11 @@ export const router = createBrowserRouter([
         element: <TrainerManagement />,
       },
       {
-        path: PATH_NAME.MODULE_DETAILS, // Add this new route
+        path: PATH_NAME.MODULE_DETAILS,
         element: <ModuleDetailsPage />,
       },
+
+      
     ],
   },
   {
@@ -72,9 +73,13 @@ export const router = createBrowserRouter([
       {
         path: PATH_NAME.SCHEDULE_TRACKER,
         element: <ScheduleTracker />,
-      },{
-        path: "/admin/trainer_management",
-        element: <TrainerManagementPage />,
+      }, {
+        path: PATH_NAME.TRAINER_LIST,
+        element: <TrainerList />,
+      },
+      {
+        path: PATH_NAME.Trainer_Management_Admin,
+        element: <TrainerManagementAdmin />,
       }
     ],
   },

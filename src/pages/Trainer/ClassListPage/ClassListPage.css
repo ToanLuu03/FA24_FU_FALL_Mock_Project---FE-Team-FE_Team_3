@@ -1,12 +1,27 @@
 .layout-container {
-    min-height: 200vh;
+    /* min-height: 200vh; */
+    height: calc(100vh - 200px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+.layout-container::-webkit-scrollbar {
+    display: none;
+}
+
+.layout-container {
+    scrollbar-width: none;
+}
+
+.layout-container {
+    -ms-overflow-style: none;
 }
 
 .search-container {
     display: flex;
     margin-bottom: 16px;
     box-shadow: none;
-  }
+}
 
 .custom-collapse {
     background: #F3F3F3;
@@ -23,8 +38,10 @@
 }
 
 .ant-tag {
-    border-radius: 20px; /* Increased border radius */
-    padding: 4px 12px; /* Optional: Adjust padding for better appearance */
+    border-radius: 20px;
+    /* Increased border radius */
+    padding: 4px 12px;
+    /* Optional: Adjust padding for better appearance */
 }
 
 .status-in-progress {
@@ -48,24 +65,24 @@
 }
 
 /* Add borders to all cells */
-.ant-table-thead > tr > th,
-.ant-table-tbody > tr > td {
+.ant-table-thead>tr>th,
+.ant-table-tbody>tr>td {
     border: 1px solid #e8e8e8;
 }
 
 /* Remove double borders */
-.ant-table-thead > tr > th:not(:last-child),
-.ant-table-tbody > tr > td:not(:last-child) {
+.ant-table-thead>tr>th:not(:last-child),
+.ant-table-tbody>tr>td:not(:last-child) {
     border-right: none;
 }
 
-.ant-table-tbody > tr:not(:last-child) > td {
+.ant-table-tbody>tr:not(:last-child)>td {
     border-bottom: none;
 }
 
 /* Adjust cell padding */
-.ant-table-thead > tr > th,
-.ant-table-tbody > tr > td {
+.ant-table-thead>tr>th,
+.ant-table-tbody>tr>td {
     padding: 12px 16px;
 }
 
@@ -73,4 +90,4 @@
     display: flex;
     justify-content: center;
     align-items: center;
-  }
+}

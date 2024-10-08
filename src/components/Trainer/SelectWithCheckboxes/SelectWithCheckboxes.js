@@ -21,6 +21,7 @@ const SelectWithCheckboxes = ({ options, selectedState, setState, placeholder, i
         <Select
             mode="multiple"
             placeholder={placeholder}
+            maxTagCount="responsive" // Use responsive behavior
             onChange={setState}
             value={selectedState}
             style={{

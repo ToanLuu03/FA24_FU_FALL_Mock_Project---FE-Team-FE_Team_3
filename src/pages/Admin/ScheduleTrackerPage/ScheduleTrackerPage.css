@@ -17,11 +17,11 @@
 }
 
 .trainername-2 {
-    width: 25%;
+    width: 34%;
 }
 
 .trainername-3 {
-    width: 25%;
+    width: 34%;
 }
 
 .module-2 {
@@ -33,26 +33,12 @@
     padding-bottom: 10px;
 }
 
-.class-module {
-    width: 40%;
-}
-
 .tracker-by {
     width: 50%;
 }
 
 .text {
     font-weight: bold;
-
-}
-
-.ant-select-multiple {
-    width: 200px !important;
-}       
-
-
-:where(.css-dev-only-do-not-override-5wsri9).ant-space-gap-row-small {
-    row-gap: 0px;
 }
 
 .filters {
@@ -114,15 +100,8 @@
     margin-top: 15px;
 }
 
-.ant-select,
-.ant-picker {
-    width: 100%;
-    height: 30px;
-}
 
-.ant-picker input {
-    height: 30px;
-}
+
 
 /* Responsive breakpoints */
 @media (max-width: 768px) {
@@ -149,12 +128,6 @@
     width: 150px;
 
     font-size: 14px;
-}
-
-:where(.css-dev-only-do-not-override-5wsri9).ant-input {
-    border-radius: 0px;
-    border-top-left-radius: 8px;
-    border-bottom-left-radius: 8px;
 }
 
 
@@ -193,7 +166,7 @@
 
 .custom-table th {
     background-color: #f4f4f4;
-    font-weight: bold;
+
     font-size: 14px;
 }
 
@@ -201,21 +174,61 @@
     font-size: 14px;
 }
 
-:where(.css-dev-only-do-not-override-5wsri9).ant-select-outlined.ant-select-multiple .ant-select-selection-item {
-    background: none;
-    display: flex;
-    border: none;
-}
 
-:where(.css-dev-only-do-not-override-5wsri9).ant-select-multiple .ant-select-selection-overflow {
-    flex-wrap: nowrap;
-}
 
-.ant-select-selection-item-content {
-    font-size: 14px;
-}
 
 .search {
     height: 32px;
     width: 165px;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    /* Remove double borders */
+}
+
+table thead th {
+    background-color: #f3f3f3;
+    /* Light background for headers */
+    color: #333;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px;
+}
+
+table tbody td {
+    padding: 10px;
+    /* Space inside each cell */
+    text-align: left;
+    /* Align content to the left */
+}
+
+table tbody tr:nth-child(odd) {
+    background-color: #fff;
+    /* White for odd rows */
+}
+
+table tr {
+    border-bottom: 1px solid #ddd;
+    /* Bottom border for rows */
+}
+
+table th,
+table td {
+    border-right: 1px solid #ddd;
+    /* Right border for cells */
+}
+
+table th:last-child,
+table td:last-child {
+    border-right: none;
+    /* Remove right border for last column */
+}
+
+table {
+    border: 1px solid #ddd;
+    /* Outer table border */
 }

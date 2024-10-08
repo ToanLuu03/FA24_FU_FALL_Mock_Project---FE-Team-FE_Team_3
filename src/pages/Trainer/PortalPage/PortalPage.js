@@ -5,7 +5,7 @@ import FeedbackChart from "../../../components/Trainer/FeedbackChart/FeedbackCha
 import SelectWithCheckboxes from '../../../components/Trainer/SelectWithCheckboxes/SelectWithCheckboxes.js'
 import { topicsDataStatic, classesDataStatic, metricsDataStatic } from "../../../data/staticData.js";
 import { useOutletContext } from 'react-router-dom';
-import './PortalPage.css';  // Import the external CSS file
+import './PortalPage.css';  
 
 const { RangePicker } = DatePicker;
 
@@ -20,6 +20,7 @@ const PortalPage = () => {
     const [selectedGpaClasses, setSelectedGpaClasses] = useState([]);
     const [selectedFeedbackClasses, setSelectedFeedbackClasses] = useState([]);
     const [selectedMetrics, setSelectedMetrics] = useState([]);
+    const [activeTab, setActiveTab] = useState('1');
 
     const handleDateRangeChange = (dates) => {
         if (dates) {
@@ -29,46 +30,61 @@ const PortalPage = () => {
         }
     };
 
+    const handleTabClick = (key) => {
+        setActiveTab(key);
+
+        if (key === '1') {
+            setSelectedTopics([]);
+            setSelectedGpaClasses([]);
+            setDateRange([null, null]);
+        }
+
+        if (key === '2') {
+            setSelectedMetrics([]);
+            setSelectedFeedbackClasses([]);
+            setDateRange([null, null]);
+        }
+    };
+
     const tabItems = [
         {
             key: '1',
             label: 'GPA',
             children: (
-                <>
-                 <div className="portal-page">
-                    <div className="select-container">
-                        <div>
-                            <h4>Select Topics</h4>
-                            <SelectWithCheckboxes
-                                inputStyle={{width: 250}}
-                                options={topicsDataStatic}
-                                selectedState={selectedTopics}
-                                setState={setSelectedTopics}
-                                placeholder={topicsDataStatic.join(', ')}
-                            />
+                <div className="container-portal">
+                    <div className="portal-page">
+                        <div className="select-container">
+                            <div>
+                                <h4>Select Topics</h4>
+                                <SelectWithCheckboxes
+                                    inputStyle={{ width: 250 }}
+                                    options={topicsDataStatic}
+                                    selectedState={selectedTopics}
+                                    setState={setSelectedTopics}
+                                    placeholder={topicsDataStatic.join(', ')}
+                                />
+                            </div>
+                            <div>
+                                <h4>Select Classes</h4>
+                                <SelectWithCheckboxes
+                                    inputStyle={{ width: 250 }}
+                                    options={classesDataStatic}
+                                    selectedState={selectedGpaClasses}
+                                    setState={setSelectedGpaClasses}
+                                    placeholder={classesDataStatic.join(', ')}
+                                />
+                            </div>
+                            <div>
+                                <h4>Select Date Range</h4>
+                                <RangePicker
+                                    value={dateRange}
+                                    onChange={handleDateRangeChange}
+                                    format="YYYY"
+                                    picker="year"
+                                    placeholder={['Start Year', 'End Year']}
+                                />
+                            </div>
                         </div>
-                        <div>
-                            <h4>Select Classes</h4>
-                            <SelectWithCheckboxes
-                                inputStyle={{width: 250}}
-                                options={classesDataStatic}
-                                selectedState={selectedGpaClasses}
-                                setState={setSelectedGpaClasses}
-                                placeholder={classesDataStatic.join(', ')}
-                            />
-                        </div>
-                        <div>
-                            <h4>Select Date Range</h4>
-                            <RangePicker
-                                value={dateRange}
-                                onChange={handleDateRangeChange}
-                                format="YYYY"
-                                picker="year"
-                                placeholder={['Start Year', 'End Year']}
-
-                            />
-                        </div>
-                    </div>
                     </div>
 
                     {selectedTopics.length > 0 && selectedGpaClasses.length > 0 && dateRange[0] && dateRange[1] && (
@@ -78,19 +94,19 @@ const PortalPage = () => {
                     )}
 
                     <GpaChart selectedTopics={selectedTopics} selectedClasses={selectedGpaClasses} dateRange={dateRange} />
-                </>
+                </div>
             )
         },
         {
             key: '2',
             label: 'Feedback',
             children: (
-                <>
+                <div className="container-portal">
                     <div className="select-container">
                         <div>
-                            <h2>Select Metrics</h2>
+                            <h4>Select Metrics</h4>
                             <SelectWithCheckboxes
-                                inputStyle={{width: 250}}
+                                inputStyle={{ width: 250 }}
                                 options={metricsDataStatic}
                                 selectedState={selectedMetrics}
                                 setState={setSelectedMetrics}
@@ -98,9 +114,9 @@ const PortalPage = () => {
                             />
                         </div>
                         <div>
-                            <h2>Select Classes</h2>
+                            <h4>Select Classes</h4>
                             <SelectWithCheckboxes
-                                inputStyle={{width: 250}}
+                                inputStyle={{ width: 250 }}
                                 options={classesDataStatic}
                                 selectedState={selectedFeedbackClasses}
                                 setState={setSelectedFeedbackClasses}
@@ -108,7 +124,7 @@ const PortalPage = () => {
                             />
                         </div>
                         <div>
-                            <h2>Select Date Range</h2>
+                            <h4>Select Date Range</h4>
                             <RangePicker
                                 value={dateRange}
                                 onChange={handleDateRangeChange}
@@ -126,7 +142,7 @@ const PortalPage = () => {
                     )}
 
                     <FeedbackChart selectedMetrics={selectedMetrics} selectedClasses={selectedFeedbackClasses} dateRange={dateRange} />
-                </>
+                </div>
             )
         }
     ];
@@ -134,8 +150,8 @@ const PortalPage = () => {
     return (
         <div>
             <div>
-                <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '20px' }}>
-                    <Tabs defaultActiveKey="1" centered items={tabItems} />
+                <div>
+                    <Tabs defaultActiveKey="1" centered items={tabItems} onTabClick={handleTabClick} />
                 </div>
             </div>
         </div>

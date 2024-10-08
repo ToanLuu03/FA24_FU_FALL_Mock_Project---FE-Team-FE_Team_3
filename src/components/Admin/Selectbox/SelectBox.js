@@ -8,12 +8,11 @@ export const SelectBox = ({ options, onChange }) => {
                 options={options}
                 onChange={onChange}
                 className='select-option'
-                style={{height:32}}
+                style={{ width:400,height: 32 }}
             />
         </div>
     );
 }
-
 
 const { Option } = Select;
 export const SelectOption = ({ options, value, onChange, placeholder }) => {

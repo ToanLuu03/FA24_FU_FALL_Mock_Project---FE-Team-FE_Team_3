@@ -34,15 +34,20 @@ export default function ModuleDetailsPage() {
     return <Tag className={className}>{status}</Tag>;
   };
 
+  const renderArrayAsString = (arr) => {
+    return Array.isArray(arr) ? arr.join(', ') : arr;
+  };
+
   const items = [
     { label: 'Module', children: moduleData.name },
-    { label: 'Class', children: moduleData.class },
-    { label: 'Skill', children: moduleData.skill },
-    { label: 'Role', children: moduleData.role },
-    { label: 'Contribution Type', children: moduleData.contribution },
+    { label: 'Class', children: moduleData.className },
+    { label: 'Skill', children: renderArrayAsString(moduleData.skills) },
+    { label: 'Role', children: moduleData.roleName },
+    { label: 'Contribution Type', children: renderArrayAsString(moduleData.contributeType) },
     { label: 'Start Date', children: moduleData.startDate },
     { label: 'End Date', children: moduleData.endDate },
     { label: 'Status', children: moduleData.status },
+    { label: 'Note', children: moduleData.note, span: 2 },
   ];
 
   const tabItems = [
@@ -51,10 +56,7 @@ export default function ModuleDetailsPage() {
       label: 'Module Info',
       children: (
         <>
-          <Descriptions bordered column={2} items={items} />
-          <Descriptions bordered column={1} labelStyle={{ width: '365px' }}>
-            <Descriptions.Item label="Note">{moduleData.note}</Descriptions.Item>
-          </Descriptions>
+           <Descriptions bordered column={2} items={items} />
         </>
       )
     },
@@ -65,6 +67,9 @@ export default function ModuleDetailsPage() {
     },
   ];
 
+  const handleBackToClassList = () => {
+    navigate('/trainer/trainer_management', { state: { defaultActiveKey: '3' } });
+  };
 
 
   return (
@@ -86,7 +91,7 @@ export default function ModuleDetailsPage() {
       <div className="separator-line" />
       <div className="button-container">
         <div className="divider"></div> {/* Divider line */}
-        <Button type="primary" onClick={() => navigate(-1)}>
+        <Button type="primary" onClick={handleBackToClassList}>
         Back To Class List
       </Button>      </div>
     </div>

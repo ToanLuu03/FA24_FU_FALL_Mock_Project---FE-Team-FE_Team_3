@@ -1,0 +1,196 @@
+/* Main container */
+.trainer-management-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: visible; /* Ensure content is not clipped */
+    min-height: 400px; /* Minimum height to ensure space */
+}
+
+/* Page header */
+.trainer-management-container h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Filters container */
+.filters-container {
+    display: flex;
+    gap: 10px; /* Space between filters */
+    justify-content: flex-start; /* Aligns filters to the left */
+    margin-bottom: 20px;
+}
+
+/* Filter items */
+.filters-container .filter-item {
+    flex: 1 1 150px; /* Each filter takes equal width with a max of 150px */
+    max-width: 150px; /* Restrict each filter's width to 150px */
+    margin-bottom: 10px; /* Margin below to avoid overlap */
+}
+
+/* Specific margin for status and site filters */
+.filters-container .status-filter, 
+.filters-container .site-filter {
+    margin-bottom: 15px; /* Increase space below these fields */
+}
+
+/* FormControl (Select dropdown) and TextField styles */
+.filters-container .MuiFormControl-root,
+.filters-container .MuiTextField-root {
+    width: 100%; /* Ensure all filters have equal width */
+}
+
+/* Style the Select and TextField input */
+.MuiSelect-root,
+.MuiTextField-root input {
+    padding: 12px; /* Ensure padding is sufficient for visibility */
+    font-size: 22px;
+    
+    font-family: 'Roboto', sans-serif;
+}
+
+/* Input label style */
+.MuiInputLabel-root {
+    color: #777;
+    z-index: 1; /* Ensure label appears above other content */
+    background-color: white; /* Ensure label background is solid for visibility */
+    padding: 0 4px; /* Padding around the label for clarity */
+}
+
+/* Table container styles */
+.MuiTableContainer-root {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* Định dạng tiêu đề bảng */
+.MuiTableHead-root th {
+    font-weight: bold; /* In đậm */
+    background-color: #f0f0f0; /* Màu nền */
+    color: #333; /* Màu chữ */
+    text-align: center; /* Canh giữa văn bản */
+    padding: 10px; /* Khoảng cách */
+    border-right: 1px solid #ddd; /* Đường kẻ dọc bên phải */
+}
+
+/* Định dạng các ô dữ liệu trong bảng */
+.MuiTableBody-root td {
+    padding: 12px; /* Khoảng cách */
+    border-right: 1px solid #ddd; /* Đường kẻ dọc bên phải */
+}
+
+
+
+
+
+.MuiTableCell-head {
+    font-weight: bold;
+    color: #444;
+    font-family: 'Roboto', sans-serif;
+    text-align: left;
+}
+
+.MuiTableCell-body {
+    font-family: 'Roboto', sans-serif;
+    color: #555;
+    text-align: left;
+}
+
+/* Chip styles for status indicators */
+.MuiChip-root {
+    font-weight: bold;
+    padding: 5px 10px;
+    font-size: 12px;
+}
+
+.MuiChip-colorSuccess {
+    background-color: #4caf50;
+    color: white;
+}
+
+.MuiChip-colorDefault {
+    background-color: #f44336;
+    color: white;
+}
+
+/* Add Trainer button */
+.add-trainer-btn {
+    margin-top: 20px;
+    background-color: #3f51b5;
+    color: white;
+    text-transform: none;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.add-trainer-btn:hover {
+    background-color: #303f9f;
+}
+
+/* Table row hover effect */
+.MuiTableRow-root:hover {
+    background-color: #f5f5f5;
+}
+
+/* Pagination controls */
+.pagination-controls {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+/* TrainerList.css */
+
+/* Hiển thị mặc định cho màn hình nhỏ */
+.professional-index-column,
+.responsive-column {
+    display: none; /* Ẩn các cột này khi màn hình nhỏ */
+}
+
+
+/* Hiển thị cột Status trên màn hình nhỏ */
+.status-column {
+    display: table-cell; /* Cột Status hiển thị trên màn hình nhỏ */
+}
+
+/* Hide specific columns on small screens */
+@media (max-width: 768px) {
+    .responsive-hide {
+        display: none;
+    }
+}
+
+/* Ensure table headers are also hidden for those columns */
+@media (max-width: 768px) {
+    .ant-table-cell.responsive-hide {
+        display: none;
+    }
+}
+
+.Header-list {
+    display: flex;
+    justify-content: space-between; /* Đẩy các phần tử ra hai bên */
+    align-items: center; /* Canh giữa theo chiều dọc */
+    padding: 10px;
+}
+
+.add-trainer-btn {
+    margin-left: auto; /* Đẩy nút sang phía bên phải */
+}
+
+
+
+
+.ant-checkbox-wrapper {
+    font-size: 16px; /* Tăng kích thước chữ */
+}
+
+.ant-checkbox {
+    transform: scale(1.5); /* Phóng to checkbox */
+}
+
+  
+  

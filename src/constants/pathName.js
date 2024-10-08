@@ -8,5 +8,6 @@ export const PATH_NAME = {
   SCHEDULE_TRACKER: "/admin/schedule_tracker",
   HOME: "/",
   MODULE_DETAILS: "/trainer/trainer_management/module/:id",
-  
+  TRAINER_LIST: "/admin/trainer_list",
+  Trainer_Management_Admin : "/admin/trainer_management",
 };

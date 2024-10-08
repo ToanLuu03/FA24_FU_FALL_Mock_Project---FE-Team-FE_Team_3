@@ -6,6 +6,18 @@
     border-bottom: 1px solid #eaeaea;
 }
 
+.container-timetable::-webkit-scrollbar {
+    display: none;
+}
+
+.container-timetable {
+    scrollbar-width: none;
+}
+
+.container-timetable {
+    -ms-overflow-style: none;
+}
+
 .timetable {
     display: grid;
     grid-template-columns: 80px repeat(6, 1fr);

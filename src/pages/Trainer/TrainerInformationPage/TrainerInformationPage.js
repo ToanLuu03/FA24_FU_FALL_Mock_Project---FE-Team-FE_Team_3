@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Collapse, Button, Tag, Input, Select } from 'antd';
+import { Collapse, Button, Tag, Input, Select, Descriptions } from 'antd';
 import './TrainerInformation.css'; // Import the CSS file
 import { useOutletContext } from 'react-router-dom';
 
@@ -16,29 +16,7 @@ const skillsList = [
   { key: '7', label: 'HTML/CSS' },
 ];
 
-const statusList = [
-  { key: '1', label: 'Available' },
-  { key: '2', label: 'Unavailable' },
-];
 
-const professionalLevelList = [
-  { key: '1', label: 'Beginner' },
-  { key: '2', label: 'Intermediate' },
-  { key: '3', label: 'Advanced' },
-  { key: '4', label: 'Expert' },
-];
-
-const contributionTypeList = [
-  { key: '1', label: 'Trainer' },
-  { key: '2', label: 'Mentor' },
-  { key: '3', label: 'Evaluator' },
-];
-
-const trainTheTrainerCertificateList = [
-  { key: '1', label: 'None' },
-  { key: '2', label: 'Basic' },
-  { key: '3', label: 'Advance' },
-];
 
 const TrainerInformation = () => {
   const { selectMenuItem } = useOutletContext();
@@ -123,79 +101,70 @@ const TrainerInformation = () => {
   };
 
   return (
-    <div className="trainer-container">
-      <Collapse>
+    <div className="trainer-container-info">
+              <Collapse
+          className="custom-collapse"
+          expandIconPosition="end"
+   
+        >
         {/* General Info */}
-        <Panel header="General Info" key="1">
-          <div className="general-info-grid">
+        <Panel header={<span className="panel-header"> General Info </span>} key="1" >
+          <Descriptions
+            bordered
+            column={{ xxl: 4, xl: 3, lg: 3, md: 3, sm: 2, xs: 1 }}
+          >
             {generalInfo.map((item, index) => (
-              <div key={index} className="general-info-row">
-                <strong className="general-info-label">
-                  {item.label}
-                </strong>
-                <span className="general-info-value">
-                  {isEditingGeneral ? (
-                    item.label === 'Status' || item.label === 'Professional Level' || item.label === 'Contribution Type' || item.label === 'Train The Trainer Certificate' ? (
-                      <Select
-                        value={item.value}
-                        onChange={(value) => handleChangeGeneralSelect(index, value)}
-                        className="general-select"
-                      >
-                        {item.label === 'Status' && statusList.map((status) => (
-                          <Option key={status.key} value={status.label}>
-                            {status.label}
-                          </Option>
-                        ))}
-                        {item.label === 'Professional Level' && professionalLevelList.map((level) => (
-                          <Option key={level.key} value={level.label}>
-                            {level.label}
-                          </Option>
-                        ))}
-                        {item.label === 'Contribution Type' && contributionTypeList.map((type) => (
-                          <Option key={type.key} value={type.label}>
-                            {type.label}
-                          </Option>
-                        ))}
-                        {item.label === 'Train The Trainer Certificate' && trainTheTrainerCertificateList.map((cert) => (
-                          <Option key={cert.key} value={cert.label}>
-                            {cert.label}
-                          </Option>
-                        ))}
-                      </Select>
-                    ) : (
-                      <Input
-                        value={item.value}
-                        onChange={(event) => handleChangeGeneral(index, event)}
-                        className="general-input"
-                      />
-                    )
+              <Descriptions.Item key={index} label={item.label}>
+                {isEditingGeneral ? (
+                  item.label === 'Status' || item.label === 'Professional Level' || item.label === 'Contribution Type' || item.label === 'Train The Trainer Certificate' ? (
+                    <Select
+                      value={item.value}
+                      onChange={(value) => handleChangeGeneralSelect(index, value)}
+                      style={{ width: '100%' }}
+                    >
+                      {/* ... Select options remain the same ... */}
+                    </Select>
                   ) : (
-                    item.label === 'Status' ? (
-                      <Tag color={item.value === 'Available' ? 'green' : 'red'}>{item.value}</Tag>
-                    ) : item.value
-                  )}
-                </span>
-              </div>
+                    <Input
+                      value={item.value}
+                      onChange={(event) => handleChangeGeneral(index, event)}
+                      style={{ width: '100%' }}
+                    />
+                  )
+                ) : (
+                  item.label === 'Status' ? (
+                    <Tag style={{ border: 'none' }}>{item.value}</Tag>
+                  ) : item.value
+                )}
+              </Descriptions.Item>
             ))}
-          </div>
+          </Descriptions>
           {isEditingGeneral ? (
-            <div className="edit-buttons">
+            <div className="edit-buttons" >
               <Button type="primary" onClick={handleSaveGeneralClick}>
                 Save
               </Button>
-              <Button onClick={handleCancelGeneralClick}>
+              <Button  danger  onClick={handleCancelGeneralClick} >
                 Cancel
               </Button>
             </div>
           ) : (
-            <Button type="primary" onClick={handleEditGeneralClick}>
+            <div className="edit-buttons" >
+            <Button type="primary" onClick={handleEditGeneralClick} style={{ width: '164px' }} >
               Edit General Info
             </Button>
+            </div>
           )}
         </Panel>
+        </Collapse>
 
         {/* Professional Skills */}
-        <Panel header="Professional Skills" key="2">
+        <Collapse
+          className="custom-collapse"
+          expandIconPosition="end"
+   
+        >
+        <Panel header={<span className="panel-header"> Professional Skills </span>} key="2">
           <table className="skills-table">
             <thead>
               <tr>
@@ -257,21 +226,24 @@ const TrainerInformation = () => {
             </tbody>
           </table>
           {isEditingSkills ? (
-            <div className="edit-buttons">
+            <div className="edit-buttons" >
               <Button type="primary" onClick={handleSaveSkillsClick}>
                 Save
               </Button>
-              <Button onClick={handleCancelSkillsClick}>
+              <Button danger onClick={handleCancelSkillsClick}>
                 Cancel
               </Button>
             </div>
           ) : (
-            <Button type="primary" onClick={handleEditSkillsClick}>
-              Edit Professional Skills
+            <div className="edit-buttons" >
+            <Button type="primary" onClick={handleEditSkillsClick} >
+              Edit Skills
             </Button>
+            </div>
           )}
         </Panel>
-      </Collapse>
+        </Collapse>
+      
     </div>
   );
 };

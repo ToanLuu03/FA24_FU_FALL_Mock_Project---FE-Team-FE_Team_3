@@ -60,7 +60,7 @@ function Feedback({ moduleName, onBack }) {
       { label: "Trainer's knowledge of the subject", value: 90 },
       { label: "Training content delivered as per curriculum", value: 88 },
       { label: "Trainer's instructions are clear", value: 92 },
-      { label: "Trainer supports enthusiastically", value: 90 },
+      { label: "Trainer supports enthusiastically", value: 90  },
     ],
     Course: [
       { label: "The logistics are well-prepared.", value: 90 },
@@ -79,7 +79,8 @@ function Feedback({ moduleName, onBack }) {
               <div className="average-rating">
                 <h3>Average</h3>
                 <div className="rating-score">
-                  <span className="rating-number">5</span> ★
+                  <span className="rating-number">5</span> 
+                  ★
                 </div>
               </div>
               <div className="rating-breakdown">

@@ -7,8 +7,8 @@ function TrainerManagementPage() {
     selectMenuItem('3');
   }, [selectMenuItem]);
   return (
-    <div>TrainerManagement
-
+    <div>
+      TrainerManagement
     </div>
   )
 }

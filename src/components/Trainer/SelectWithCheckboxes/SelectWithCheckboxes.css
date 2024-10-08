@@ -75,6 +75,8 @@
 .select-option {
     max-width: 100%;
     padding-right: 5px;
-    font-size: 10px;
-font-weight: 500;
+    padding-left: 5px;
+    font-size: 12px;
+    font-weight: 500;
+
 }

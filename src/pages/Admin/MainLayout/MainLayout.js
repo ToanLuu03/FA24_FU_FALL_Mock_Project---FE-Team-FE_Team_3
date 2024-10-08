@@ -79,7 +79,7 @@ const MainLayout = () => {
             {
               key: '3',
               icon: wrapIcon(<CapIcon />),
-              label: <a href='/admin/trainer_management'>Trainer Management</a>,
+              label: <a href='/admin/trainer_list'>Trainer Management</a>,
             },
             {
               key: '4',

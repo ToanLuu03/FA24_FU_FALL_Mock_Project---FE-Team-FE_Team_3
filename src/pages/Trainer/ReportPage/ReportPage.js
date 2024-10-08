@@ -15,18 +15,18 @@ function ReportPage() {
             key: '1',
             label: "Training",
             children: (
-                <>
+                <div className='container-tracker'>
                     <TabTraining />
-                </>
+                </div>
             )
         },
         {
             key: '2',
             label: "Report",
             children: (
-                <>
+                <div className='container-tracker'>
                     <TabReport />
-                </>
+                </div>
             )
         },
 

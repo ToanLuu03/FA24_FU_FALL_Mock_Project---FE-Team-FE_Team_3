@@ -19,6 +19,11 @@ const TabTraining = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedTopics, setSelectedTopics] = useState([]);
     const [showReason, setShowReason] = useState(false);
+    const [duration, setDuration] = useState('');
+    const [modalDate, setModalDate] = useState(null);
+
+    const [errorDate, setErrorDate] = useState('');
+    const [errorDuration, setErrorDuration] = useState('');
 
 
     const handleSelectTopic = (topic) => {
@@ -31,26 +36,38 @@ const TabTraining = () => {
         });
     };
     const handleModalDateChange = (date) => {
-        // Lấy danh sách ngày của các topic đã chọn
         const topicDates = selectedTopics.map(topic => new Date(topic.date));
         console.log('Selected date in modal:', date);
         console.log('Topic dates:', topicDates);
 
-        // Kiểm tra xem ngày có khớp với bất kỳ ngày nào không
         const dateMatches = topicDates.some(topicDate => topicDate.toDateString() === date.toDate().toDateString());
         console.log('Date matches:', dateMatches);
-
-        setShowReason(!dateMatches); // Hiển thị lý do nếu không khớp
+        setModalDate(date);
+        setShowReason(!dateMatches);
     };
 
     const showModal = () => {
         setIsModalVisible(true);
-        setShowReason(false); // Đặt trạng thái lý do về false
+        setShowReason(false);
+        setErrorDate('');
+        setErrorDuration('');
     };
 
+
     const handleOk = () => {
+        if (!modalDate) {
+            setErrorDate('Please select a date!');
+            return;
+        }
+
+        if (!duration) {
+            setErrorDuration('Please enter duration!');
+            return;
+        }
+
         setIsModalVisible(false);
     };
+
 
     const handleCancel = () => {
         setIsModalVisible(false);
@@ -156,6 +173,7 @@ const TabTraining = () => {
                 <div className="col">
                     <p>Class:</p>
                     <Select
+                        style={{ width: '150px' }}
                         className="select-training"
                         placeholder="Select Class"
                         onChange={value => {
@@ -174,6 +192,7 @@ const TabTraining = () => {
                 <div className="col">
                     <p>Module:</p>
                     <Select
+                        style={{ width: '150px' }}
                         className="select-training"
                         placeholder="Select Module"
                         onChange={value => {
@@ -193,6 +212,7 @@ const TabTraining = () => {
                 <div className="col">
                     <p>Delivery Type:</p>
                     <Select
+                        style={{ width: '150px' }}
                         className="select-training"
                         mode="multiple"
                         placeholder="Select Delivery Type"
@@ -213,6 +233,7 @@ const TabTraining = () => {
                 <div className="col">
                     <p>Format Training:</p>
                     <Select
+                        style={{ width: '150px' }}
                         className="select-training"
                         mode="multiple"
                         placeholder="Select Training Format"
@@ -236,7 +257,6 @@ const TabTraining = () => {
                         onChange={handleDateChange}
                     />
                 </div>
-
                 <div className="col">
                     <p>Search:</p>
                     <Input
@@ -321,10 +341,15 @@ const TabTraining = () => {
                         <div>
                             <p>Date:</p>
                             <DatePicker onChange={handleModalDateChange} />
+                            {errorDate && <span className='text-danger'>{errorDate}</span>}
                         </div>
                         <div>
                             <p>Duration</p>
-                            <Input placeholder='Enter Duration' type='number' />
+                            <Input placeholder='Enter Duration' type='number'
+                                onChange={(e) => setDuration(e.target.value)}
+                            />
+                            {errorDuration && <span className='text-danger'>{errorDuration}</span>}
+
                         </div>
                         <div>
                             <p>Topics:</p>
@@ -338,7 +363,7 @@ const TabTraining = () => {
                             <p>Note</p>
                             <Input.TextArea placeholder="Enter note" />
                         </div>
-                        {showReason && ( // Chỉ hiển thị nếu showReason là true
+                        {showReason && (
                             <div>
                                 <p>Reason</p>
                                 <Input.TextArea placeholder="Enter reason" />

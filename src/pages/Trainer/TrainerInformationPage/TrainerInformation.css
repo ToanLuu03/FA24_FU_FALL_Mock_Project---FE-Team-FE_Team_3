@@ -1,43 +1,34 @@
-/* General container style */
-.trainer-container {
-  padding: 20px;
-  width: 100%;
-  min-height: 100vh;
+.trainer-container-info {
+  height: calc(100vh - 200px);
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
-/* Style for the collapse panels */
-.ant-collapse-item {
-  background-color: #f9f9f9; /* Light background for panels */
-  border-radius: 8px;
-  margin-bottom: 12px; /* Space between panels */
-  border: none;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Adding shadow */
-  transition: box-shadow 0.3s ease; /* Smooth shadow transition */
+.trainer-container-info::-webkit-scrollbar {
+  display: none;
 }
 
-.ant-collapse-item:hover {
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* More pronounced shadow on hover */
+.trainer-container-info {
+  scrollbar-width: none;
 }
 
-.ant-collapse-header {
-  font-weight: bold; /* Bold title */
-  font-size: 16px;
+.trainer-container-info {
+  -ms-overflow-style: none;
 }
 
-.ant-collapse-header .anticon {
-  color: #999; /* Arrow color */
+.custom-collapse {
+  background: #F3F3F3;
+  margin-bottom: 20px;
+  box-shadow: 0px 8px 5px 0px #00000026;
 }
 
-.ant-collapse-header:hover {
-  background-color: #f0f0f0;
-  border-radius: 8px;
+.custom-panel .ant-collapse-header {
+  background: #F3F3F3;
 }
 
-/* Remove borders around the collapse */
-.ant-collapse {
-  border: none;
+.panel-header {
+  font-weight: bold;
 }
-
 
 /* General Info grid layout */
 .general-info-grid {
@@ -122,10 +113,13 @@
 /* Button group for editing skills */
 .edit-buttons {
   display: flex;
-  gap: 10px;
+  gap: 30px;
   margin-top: 20px;
+  justify-content: right;
 }
 
 .edit-buttons button {
-  width: 100px;
+  width: 117px;
+  border-radius: 50px;
+  background-color: #5750DF;
 }
