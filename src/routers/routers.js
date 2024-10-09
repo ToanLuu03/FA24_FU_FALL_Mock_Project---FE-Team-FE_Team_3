@@ -11,13 +11,15 @@ import ScheduleTracker from "../pages/Admin/ScheduleTrackerPage/ScheduleTrackerP
 import ModuleDetailsPage from "../pages/Trainer/ClassListPage/ModuleDetailsPage";
 import TrainerList from "../pages/Admin/TrainerListPage/TrainerList";
 import TrainerManagementAdmin from "../pages/Admin/TrainerManagementPage/TrainerManagementPage"
+import AddTrainerPage from "../pages/Admin/TrainerListPage/AddTrainerPage";
+
 const PrivateRouteTrainer = ({ children }) => {
   const selectedRole = useSelector((state) => state.role.selectedRole);
   console.log("Selected Role:", selectedRole);
-  if (!selectedRole || selectedRole === 'admin') {
+  if (!selectedRole || selectedRole === 'CLASS_ADMIN') {
     return <Navigate to={PATH_NAME.ROLE} replace />;
   }
-  else if (selectedRole === 'trainer') {
+  else if (selectedRole === 'TRAINER') {
     return children;
   }
 };
@@ -25,10 +27,10 @@ const PrivateRouteTrainer = ({ children }) => {
 const PrivateRouteAdmin = ({ children }) => {
   const selectedRole = useSelector((state) => state.role.selectedRole);
   console.log("Selected Role:", selectedRole);
-  if (!selectedRole || selectedRole === 'trainer') {
+  if (!selectedRole || selectedRole === 'TRAINER') {
     return <Navigate to={PATH_NAME.ROLE} replace />;
   }
-  else if (selectedRole === 'admin') {
+  else if (selectedRole === 'CLASS_ADMIN') {
     return children;
   }
 };
@@ -80,7 +82,11 @@ export const router = createBrowserRouter([
       {
         path: PATH_NAME.Trainer_Management_Admin,
         element: <TrainerManagementAdmin />,
-      }
+      },
+      {
+        path: PATH_NAME.Add_Trainer,
+        element: <AddTrainerPage />,
+      }, 
     ],
   },
   {

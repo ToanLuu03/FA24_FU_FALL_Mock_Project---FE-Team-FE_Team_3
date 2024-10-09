@@ -1,18 +1,19 @@
 import React from 'react';
-import './Timetable.css'
-const Timetable = ({ timeSlots, getFormattedWeekDays, isFullHour, handleCellClick, renderEvents }) => {
+import './WeekView.css'
+import moment from 'moment'
+const WeekView = ({ timeSlots, getFormattedWeekDays, isFullHour, handleCellClick, renderEvents }) => {
     return (
-        <div className='container-timetable'>
+        <div className='container-weekview'>
             <div className="header-row">
                 <div className="header-cell"></div>
-                {getFormattedWeekDays().map(({ label }) => (
-                    <div key={label} className="header-cell">
+                {getFormattedWeekDays().map(({ label, day }) => (
+                    <div key={label} className="header-cell" style={{ backgroundColor: `${label.slice(4, 8) === moment().format('D/M') && day.format('YYYY') === moment().format('YYYY') ? '#89A6FB' : ''}` }}>
                         {label}
                     </div>
                 ))}
             </div>
 
-            <div className="timetable">
+            <div className="weekview">
                 {timeSlots.map((time) => (
                     <div key={time} className="time-row">
                         <div className="time-cell">{isFullHour(time) ? time : null}</div>
@@ -28,4 +29,4 @@ const Timetable = ({ timeSlots, getFormattedWeekDays, isFullHour, handleCellClic
     );
 };
 
-export default Timetable;
+export default WeekView;

@@ -9,5 +9,6 @@ export const PATH_NAME = {
   HOME: "/",
   MODULE_DETAILS: "/trainer/trainer_management/module/:id",
   TRAINER_LIST: "/admin/trainer_list",
+  Add_Trainer: "/admin/add",
   Trainer_Management_Admin : "/admin/trainer_management",
 };

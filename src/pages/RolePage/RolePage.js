@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { Form, Button, Select, Input, Alert } from 'antd';
 import { useDispatch } from 'react-redux';
-import { setRole } from '../../features/role/roleSlice'; 
-import { useNavigate } from 'react-router-dom'; 
-import './RolePage.css'; 
+import { setRole } from '../../features/role/roleSlice';
+import { useNavigate } from 'react-router-dom';
+import './RolePage.css';
 import logo from '../../assets/FSA-logo.png';
-import { PATH_NAME } from '../../constants/pathName'; 
+import { PATH_NAME } from '../../constants/pathName';
 import { login } from '../../api/Login/Login'
 const { Option } = Select;
 
@@ -13,22 +13,31 @@ const RolePage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
-    const [errorMessage, setErrorMessage] = useState(''); 
+    const [errorMessage, setErrorMessage] = useState('');
 
     const onFinish = async (values) => {
         setLoading(true);
-        setErrorMessage(''); 
+        setErrorMessage('');
 
         try {
-            await login(values.username, values.password);
-            dispatch(setRole(values.role));
-            console.log("Selected role:", values.role);
-
-            if (values.role === 'admin') {
-                navigate(PATH_NAME.ADMIN);
+            const role = await login(values.username, values.password);
+            console.log('Role API: ', role)
+            if (role === values.role || role) {
+                dispatch(setRole(values.role));
+                if (values.role === 'CLASS_ADMIN') {
+                    if (role === 'CLASS_ADMIN' || role === 'TRAINER,FAMS_ADMIN') {
+                        navigate(PATH_NAME.ADMIN);
+                    }
+                } else {
+                    if (role === 'TRAINER' || role === 'TRAINER,FAMS_ADMIN') {
+                        navigate(PATH_NAME.TRAINER);
+                    }
+                }
+                console.log("Selected role:", values.role);
             } else {
-                navigate(PATH_NAME.TRAINER);
+                setErrorMessage('Username or Password is wrong!');
             }
+
         }
         catch (error) {
             setErrorMessage('Username or Password is wrong');
@@ -43,7 +52,7 @@ const RolePage = () => {
         <div className="sign-in-container">
             <img src={logo} alt="FPT Software Academy" className="logo" />
             <h2 className="title">Sign in</h2>
-            {errorMessage && <Alert message={errorMessage} type="error" showIcon style={{ marginBottom: '20px' }} />} {/* Hiển thị thông báo lỗi nếu có */}
+            {errorMessage && <Alert message={errorMessage} type="error" showIcon style={{ marginBottom: '20px' }} />}
 
             <Form onFinish={onFinish} className="sign-in-form">
                 <Form.Item
@@ -63,8 +72,8 @@ const RolePage = () => {
                     rules={[{ required: true, message: 'Please select a role!' }]}
                 >
                     <Select placeholder="Select your role">
-                        <Option value="admin">Admin</Option>
-                        <Option value="trainer">Trainer</Option>
+                        <Option value="CLASS_ADMIN">Admin</Option>
+                        <Option value="TRAINER">Trainer</Option>
                     </Select>
                 </Form.Item>
                 <Form.Item>

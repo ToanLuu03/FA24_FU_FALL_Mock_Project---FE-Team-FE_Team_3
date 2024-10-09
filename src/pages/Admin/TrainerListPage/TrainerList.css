@@ -5,8 +5,12 @@
     background-color: #f9f9f9;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    overflow: visible; /* Ensure content is not clipped */
-    min-height: 400px; /* Minimum height to ensure space */
+    overflow-x: hidden;
+    /* Prevent horizontal overflow */
+    max-width: 100%;
+    /* Ensure the container fits the screen width */
+    min-height: 400px;
+    /* Minimum height to ensure space */
 }
 
 /* Page header */
@@ -20,73 +24,108 @@
 /* Filters container */
 .filters-container {
     display: flex;
-    gap: 10px; /* Space between filters */
-    justify-content: flex-start; /* Aligns filters to the left */
+    gap: 10px;
+    /* Space between filters */
+    justify-content: flex-start;
+    /* Aligns filters to the left */
     margin-bottom: 20px;
 }
 
 /* Filter items */
 .filters-container .filter-item {
-    flex: 1 1 150px; /* Each filter takes equal width with a max of 150px */
-    max-width: 150px; /* Restrict each filter's width to 150px */
-    margin-bottom: 10px; /* Margin below to avoid overlap */
+    flex: 1 1 150px;
+    /* Each filter takes equal width with a max of 150px */
+    max-width: 150px;
+    /* Restrict each filter's width to 150px */
+    margin-bottom: 10px;
+    /* Margin below to avoid overlap */
 }
 
 /* Specific margin for status and site filters */
-.filters-container .status-filter, 
+.filters-container .status-filter,
 .filters-container .site-filter {
-    margin-bottom: 15px; /* Increase space below these fields */
+    margin-bottom: 15px;
+    /* Increase space below these fields */
 }
 
 /* FormControl (Select dropdown) and TextField styles */
 .filters-container .MuiFormControl-root,
 .filters-container .MuiTextField-root {
-    width: 100%; /* Ensure all filters have equal width */
+    width: 100%;
+    /* Ensure all filters have equal width */
 }
 
 /* Style the Select and TextField input */
 .MuiSelect-root,
 .MuiTextField-root input {
-    padding: 12px; /* Ensure padding is sufficient for visibility */
+    padding: 12px;
+    /* Ensure padding is sufficient for visibility */
     font-size: 22px;
-    
     font-family: 'Roboto', sans-serif;
 }
 
 /* Input label style */
 .MuiInputLabel-root {
     color: #777;
-    z-index: 1; /* Ensure label appears above other content */
-    background-color: white; /* Ensure label background is solid for visibility */
-    padding: 0 4px; /* Padding around the label for clarity */
+    z-index: 1;
+    /* Ensure label appears above other content */
+    background-color: white;
+    /* Ensure label background is solid for visibility */
+    padding: 0 4px;
+    /* Padding around the label for clarity */
 }
 
 /* Table container styles */
 .MuiTableContainer-root {
     border: 1px solid #ddd;
     border-radius: 8px;
+    overflow-x: auto;
+    /* Enable horizontal scrolling for tables on smaller screens */
 }
 
-/* Định dạng tiêu đề bảng */
+/* Table header */
 .MuiTableHead-root th {
-    font-weight: bold; /* In đậm */
-    background-color: #f0f0f0; /* Màu nền */
-    color: #333; /* Màu chữ */
-    text-align: center; /* Canh giữa văn bản */
-    padding: 10px; /* Khoảng cách */
-    border-right: 1px solid #ddd; /* Đường kẻ dọc bên phải */
+    font-weight: bold;
+    /* Bold */
+    background-color: #f0f0f0;
+    /* Background color */
+    color: #333;
+    /* Text color */
+    text-align: center;
+    /* Center align text */
+    padding: 10px;
+    /* Padding */
+    border-right: 1px solid #ddd;
+    /* Right border */
 }
 
-/* Định dạng các ô dữ liệu trong bảng */
+/* Table body */
 .MuiTableBody-root td {
-    padding: 12px; /* Khoảng cách */
-    border-right: 1px solid #ddd; /* Đường kẻ dọc bên phải */
+    padding: 12px;
+    /* Padding */
+    border-right: 1px solid #ddd;
+    /* Right border */
 }
 
+/* Responsive table styles */
+@media (max-width: 768px) {
+    .responsive-hide {
+        display: none;
+        /* Hide specific columns on small screens */
+    }
 
+    .ant-table-cell.responsive-hide {
+        display: none;
+        /* Hide table headers for specific columns */
+    }
+}
 
+/* Table row hover effect */
+.MuiTableRow-root:hover {
+    background-color: #f5f5f5;
+}
 
-
+/* Table cell head */
 .MuiTableCell-head {
     font-weight: bold;
     color: #444;
@@ -94,6 +133,7 @@
     text-align: left;
 }
 
+/* Table cell body */
 .MuiTableCell-body {
     font-family: 'Roboto', sans-serif;
     color: #555;
@@ -131,66 +171,71 @@
     background-color: #303f9f;
 }
 
-/* Table row hover effect */
-.MuiTableRow-root:hover {
-    background-color: #f5f5f5;
-}
-
 /* Pagination controls */
 .pagination-controls {
     display: flex;
     justify-content: space-between;
     padding: 10px;
 }
-/* TrainerList.css */
 
-/* Hiển thị mặc định cho màn hình nhỏ */
-.professional-index-column,
-.responsive-column {
-    display: none; /* Ẩn các cột này khi màn hình nhỏ */
+/* Checkbox styles */
+.ant-checkbox-wrapper {
+    font-size: 16px;
+    /* Increase font size */
 }
 
-
-/* Hiển thị cột Status trên màn hình nhỏ */
-.status-column {
-    display: table-cell; /* Cột Status hiển thị trên màn hình nhỏ */
+.ant-checkbox {
+    transform: scale(1.5);
+    /* Enlarge checkbox */
 }
 
-/* Hide specific columns on small screens */
-@media (max-width: 768px) {
-    .responsive-hide {
-        display: none;
-    }
-}
-
-/* Ensure table headers are also hidden for those columns */
-@media (max-width: 768px) {
-    .ant-table-cell.responsive-hide {
-        display: none;
-    }
-}
-
+/* Header list */
 .Header-list {
     display: flex;
-    justify-content: space-between; /* Đẩy các phần tử ra hai bên */
-    align-items: center; /* Canh giữa theo chiều dọc */
+    justify-content: space-between;
+    /* Spread items out */
+    align-items: center;
+    /* Center items vertically */
     padding: 10px;
 }
 
 .add-trainer-btn {
-    margin-left: auto; /* Đẩy nút sang phía bên phải */
+    margin-left: auto;
+    /* Align button to the right */
 }
 
+/* Responsive adjustments for filters container */
+@media (max-width: 768px) {
+    .filters-container {
+        flex-direction: column;
+        /* Stack filters vertically */
+        gap: 15px;
+        /* Increase the gap between filter items */
+    }
 
-
-
-.ant-checkbox-wrapper {
-    font-size: 16px; /* Tăng kích thước chữ */
+    /* Adjust filter item width for smaller screens */
+    .filters-container .filter-item {
+        flex: 1 1 100%;
+        /* Make filters take full width on small screens */
+        max-width: 100%;
+        /* Ensure filters do not exceed container width */
+    }
 }
 
-.ant-checkbox {
-    transform: scale(1.5); /* Phóng to checkbox */
-}
+/* Responsive adjustments for the header and button */
+@media (max-width: 768px) {
+    .add-trainer-btn {
+        width: 100%;
+        /* Full width on small screens */
+        margin-top: 15px;
+        /* Margin to separate from other content */
+    }
 
-  
-  
+    .Header-list {
+        flex-direction: column;
+        /* Stack header items vertically */
+        align-items: flex-start;
+        /* Align items to the left */
+    }
+
+}

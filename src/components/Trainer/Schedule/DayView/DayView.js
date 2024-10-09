@@ -12,7 +12,7 @@ const DayView = ({ timeSlots, selectedDate, isFullHour, handleCellClick, renderE
                 {timeSlots.map((time) => (
                     <div key={time} className="daily-schedule-time-row">
                         <div className="daily-schedule-time-cell">{isFullHour(time) ? time : null}</div>
-                        <div className="event-cell" onClick={() => handleCellClick(selectedDate, time)}>
+                        <div className="event-cell daily-schedule-event-cell" onClick={() => handleCellClick(selectedDate, time)}>
                             {renderEvents(selectedDate, time)}
                         </div>
                     </div>

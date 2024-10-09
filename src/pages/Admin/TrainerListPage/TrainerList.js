@@ -69,6 +69,36 @@ const trainersData = [
         registeredSkills: 'C#, .NET',
         taughtSkills: 'ASP.NET',
     },
+    {
+        id: 5,
+        name: 'Lưu Toán',
+        account: 'TVC120',
+        type: 'External',
+        site: 'DN',
+        jobRank: 'Developer 2',
+        trainCert: 'Intermediate',
+        professionalLevel: 'Advanced',
+        trainingCompetencyIndex: 2.5,
+        professionalIndex: 1.7,
+        status: 'Available',
+        registeredSkills: 'C#, .NET',
+        taughtSkills: 'ASP.NET',
+    },
+    {
+        id: 6,
+        name: 'Phạm Minh D',
+        account: 'PMD100',
+        type: 'Internal',
+        site: 'HCM',
+        jobRank: 'Developer 1',
+        trainCert: 'Advanced',
+        professionalLevel: 'Expert',
+        trainingCompetencyIndex: 2.0,
+        professionalIndex: 2.1,
+        status: 'Busy',
+        registeredSkills: 'Python, Django',
+        taughtSkills: 'Machine Learning',
+    },
 ];
 
 const statusOptions = ["Available", "Busy", "Out"];
@@ -82,6 +112,7 @@ function TrainerList() {
         status: [],
         site: [],
     });
+    const [expandedRowKeys, setExpandedRowKeys] = useState([]); // State to track expanded rows
 
     const navigate = useNavigate();
 
@@ -102,7 +133,7 @@ function TrainerList() {
     };
 
     const handleAddTrainer = () => {
-        navigate('/admin/trainer_list/AddTrainerPage');
+        navigate('/admin/add');
     };
 
     const getStatusTagColor = (status) => {
@@ -141,7 +172,11 @@ function TrainerList() {
             title: 'Trainer Name',
             dataIndex: 'name',
             key: 'name',
-            render: (text, record) => <a href='/admin/trainer_management'>{text}</a>,
+            render: (text, record) => (
+                <a href='/admin/trainer_management' onClick={() => handleRowExpand(record.id)}>
+                    {text}
+                </a>
+            ),
         },
         {
             title: 'FPT Account',
@@ -182,19 +217,19 @@ function TrainerList() {
             title: 'Professional Index',
             dataIndex: 'professionalIndex',
             key: 'professionalIndex',
-            className: 'responsive-hide', // Add class to hide on small screens
+            className: 'responsive-hide',
         },
         {
             title: 'Registered Skills',
             dataIndex: 'registeredSkills',
             key: 'registeredSkills',
-            className: 'responsive-hide', // Add class to hide on small screens
+            className: 'responsive-hide',
         },
         {
             title: 'Taught Skills',
             dataIndex: 'taughtSkills',
             key: 'taughtSkills',
-            className: 'responsive-hide', // Add class to hide on small screens
+            className: 'responsive-hide',
         },
         {
             title: 'Status',
@@ -203,6 +238,28 @@ function TrainerList() {
             render: (status) => <Tag color={getStatusTagColor(status)}>{status}</Tag>,
         },
     ];
+
+    // Handle row expand/collapse
+    const handleRowExpand = (id) => {
+        setExpandedRowKeys((prevKeys) =>
+            prevKeys.includes(id)
+                ? prevKeys.filter((key) => key !== id)
+                : [...prevKeys, id]
+        );
+    };
+
+    // Expanded row render
+    const expandedRowRender = (record) => {
+        return (
+            <div>
+                <p><strong>Registered Skills:</strong> {record.registeredSkills}</p>
+                <p><strong>Taught Skills:</strong> {record.taughtSkills}</p>
+                <p><strong>Professional Index:</strong> {record.professionalIndex}</p>
+                <p><strong>Training Competency Index:</strong> {record.trainingCompetencyIndex}</p>
+            </div>
+        );
+    };
+
     return (
         <div className="trainer-management-container">
             <div className='Header-list'>
@@ -269,23 +326,27 @@ function TrainerList() {
                         </Select>
                     </Form.Item>
 
-                    <Form.Item>
+                    <Form.Item label="Search">
                         <Search
                             placeholder="Search by name"
-                            onSearch={handleSearchChange}
-                            enterButton
-                            style={{ width: 250 }}
+                            onChange={(e) => handleSearchChange(e.target.value)}
+                            style={{ width: 200 }}
                         />
                     </Form.Item>
                 </Form>
             </div>
 
-            {/* Trainer Table */}
+            {/* Table */}
             <Table
                 columns={columns}
                 dataSource={filteredData}
                 rowKey="id"
-                pagination={false}
+                pagination={{
+                    pageSize: 5,  // Hiển thị 5 người trên mỗi trang
+                    showSizeChanger: false,  // Ẩn tùy chọn thay đổi số hàng trên mỗi trang
+                    showQuickJumper: true,  // Cho phép nhảy đến trang cụ thể
+                }}
+                scroll={{ x: 'max-content' }}
             />
         </div>
     );

@@ -27,33 +27,48 @@
     background-color: #f0f0f0;
     padding: 10px;
     font-weight: bold;
+    position: sticky;
+    top: 0;
+    z-index: 2;
     width: 100%;
 }
 
 .daily-schedule-header-cell {
     width: 100%;
     text-align: center;
+    height: 21px;
 }
 
 .daily-schedule-timetable {
     display: flex;
     flex-direction: column;
+
 }
 
 .daily-schedule-time-row {
+    box-sizing: border-box;
     display: flex;
     align-items: center;
     border-bottom: 1px solid #e8e8e8;
+    border-right: 1px solid #e8e8e8;
+
 }
 
 .daily-schedule-time-cell {
     width: 80px;
     text-align: right;
     padding-right: 10px;
+    border-right: 1px solid #e8e8e8;
+    height: 100%;
 }
 
 .event-cell {
-    flex-grow: 1;
-    padding: 10px;
     cursor: pointer;
+}
+
+.daily-schedule-event-cell {
+    flex-grow: 1;
+    padding: 11px;
+    border-left: 1px solid #e8e8e8;
+    border: none;
 }

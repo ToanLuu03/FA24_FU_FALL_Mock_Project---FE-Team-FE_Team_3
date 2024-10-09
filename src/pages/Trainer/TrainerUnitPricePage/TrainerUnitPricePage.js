@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'antd';  
+import { Table } from 'antd';
 import { fetchTrainers } from '../../../api/Unit_Price_API';
 import './TrainerUnitPricePage.css';
 
@@ -14,45 +14,45 @@ function TrainerUnitPrice() {
       .then((data) => {
         // set hàm timeout để tạo độ trễ khi load
         setTimeout(() => {
-          setTrainers(data); 
-          setLoading(false); 
-        }, 300); 
+          setTrainers(data);
+          setLoading(false);
+        }, 300);
       })
       .catch((error) => {
         console.error('Lỗi trong useEffect:', error);
-        setLoading(false); 
+        setLoading(false);
       });
 
   }, []);
 
   const columns = [
     {
-      title: 'STT',
+      title: 'No',
       dataIndex: 'No',
       key: 'No',
     },
     {
-      title: 'Mã đơn vị',
+      title: 'Unitcode',
       dataIndex: 'Unitcode',
       key: 'Unitcode',
     },
     {
-      title: 'Ngày sửa đổi gần nhất',
+      title: 'Lastmodifieddate',
       dataIndex: 'Lastmodifieddate',
       key: 'Lastmodifieddate',
     },
     {
-      title: 'Người sửa đổi gần nhất',
+      title: 'Lastmodifiedby',
       dataIndex: 'Lastmodifiedby',
       key: 'Lastmodifiedby',
     },
     {
-      title: 'Giá',
+      title: 'Price',
       dataIndex: 'Price',
       key: 'Price',
     },
     {
-      title: 'Ghi chú',
+      title: 'Note',
       dataIndex: 'Note',
       key: 'Note',
     },
@@ -62,13 +62,16 @@ function TrainerUnitPrice() {
     <div className="trainer-unit">
       {loading ? (
         <div className="loading-container">
-          <p>Loading Data...</p> 
+          <p>Loading Data...</p>
         </div>
       ) : (
         <Table
           dataSource={trainers}
           columns={columns}
           rowKey="No" // Sử dụng trường nào để làm key cho mỗi hàng
+          pagination={{
+            pageSize: 7,
+          }}
         />
       )}
     </div>

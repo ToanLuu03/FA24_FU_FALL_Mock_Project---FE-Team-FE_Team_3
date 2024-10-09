@@ -19,11 +19,7 @@ const TabTraining = () => {
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [selectedTopics, setSelectedTopics] = useState([]);
     const [showReason, setShowReason] = useState(false);
-    const [duration, setDuration] = useState('');
-    const [modalDate, setModalDate] = useState(null);
 
-    const [errorDate, setErrorDate] = useState('');
-    const [errorDuration, setErrorDuration] = useState('');
 
 
     const handleSelectTopic = (topic) => {
@@ -42,29 +38,16 @@ const TabTraining = () => {
 
         const dateMatches = topicDates.some(topicDate => topicDate.toDateString() === date.toDate().toDateString());
         console.log('Date matches:', dateMatches);
-        setModalDate(date);
         setShowReason(!dateMatches);
     };
 
     const showModal = () => {
         setIsModalVisible(true);
         setShowReason(false);
-        setErrorDate('');
-        setErrorDuration('');
     };
 
 
     const handleOk = () => {
-        if (!modalDate) {
-            setErrorDate('Please select a date!');
-            return;
-        }
-
-        if (!duration) {
-            setErrorDuration('Please enter duration!');
-            return;
-        }
-
         setIsModalVisible(false);
     };
 
@@ -118,40 +101,53 @@ const TabTraining = () => {
 
     const updateDataSource = (module, date, deliveryTypes, trainingFormats) => {
         if (!selectedClass || !module || !date) return;
-
+    
         const filteredData = [];
         const startDate = date.toDate();
         const endDate = new Date(startDate);
         endDate.setMonth(endDate.getMonth() + 3);
-
+    
         const topics = module.topics.filter(topic => {
             const topicDate = new Date(topic.date);
             return topicDate >= startDate && topicDate <= endDate;
         });
-
-        topics.forEach(topic => {
-            topic.contents.forEach(content => {
-                if (
-                    (deliveryTypes.includes(content.deliveryType) || deliveryTypes.length === 0) &&
-                    (trainingFormats.includes(content.trainingFormat) || trainingFormats.length === 0)
-                ) {
-                    filteredData.push({
-                        topicName: topic.topicName,
-                        date: topic.date,
-                        duration: topic.duration,
-                        contentName: content.contentName,
-                        deliveryType: content.deliveryType,
-                        trainingFormat: content.trainingFormat,
-                        className: selectedClass.className,
-                        moduleName: module.moduleName
-                    });
-                }
-            });
-        });
-
-        setDataSource(filteredData);
+    
+        const rows = topics.flatMap(topic => 
+            topic.contents
+            .filter(content => 
+                (deliveryTypes.includes(content.deliveryType) || deliveryTypes.length === 0) &&
+                (trainingFormats.includes(content.trainingFormat) || trainingFormats.length === 0)
+            )
+            .map(content => ({
+                topicName: topic.topicName,
+                date: topic.date,
+                duration: topic.duration,
+                contentName: content.contentName,
+                deliveryType: content.deliveryType,
+                trainingFormat: content.trainingFormat,
+            }))
+        );
+    
+        setDataSource(rows);
     };
-
+    
+    const handleClassChange = (value) => {
+        const selected = classes.find(c => c.classId === value);
+        setSelectedClass(selected);
+        setSelectedModule(null);
+        setSelectedDeliveryTypes([]);
+        setSelectedTrainingFormats([]);
+        setSelectedDate(null);
+        setDataSource([]); // Reset bảng khi chọn Class mới
+    };
+    const handleModuleChange = (value) => {
+        const selected = modules.find(m => m.moduleId === value);
+        setSelectedModule(selected);
+        setSelectedDeliveryTypes([]);
+        setSelectedTrainingFormats([]);
+        setSelectedDate(null);
+        setDataSource([]); // Reset bảng khi chọn Module mới
+    };
     const handleDateChange = (date) => {
         setSelectedDate(date);
         updateDataSource(selectedModule, date, selectedDeliveryTypes, selectedTrainingFormats);
@@ -167,6 +163,111 @@ const TabTraining = () => {
     const isModuleSelected = !!selectedModule;
     const isDateSelected = !!selectedDate;
 
+    const getRowSpan = (data, index, key) => {
+        const currentValue = data[index][key];
+        let rowSpan = 1;
+        
+        for (let i = index + 1; i < data.length; i++) {
+            if (data[i][key] === currentValue) {
+                rowSpan++;
+            } else {
+                break;
+            }
+        }
+        
+        return rowSpan;
+    };
+    
+    const getRowSpanForColumn = (data, index, key) => {
+        const currentValue = data[index][key];
+        for (let i = 0; i < index; i++) {
+            if (data[i][key] === currentValue) {
+                return 0; // Already merged in a previous row
+            }
+        }
+        return getRowSpan(data, index, key);
+    };
+    
+    // Columns for the table
+    const columns = [
+        {
+            title: 'Topic',
+            dataIndex: 'topicName',
+            key: 'topicName',
+            render: (text, record, index) => {
+                const rowSpan = getRowSpanForColumn(dataSource, index, 'topicName');
+                return {
+                    children: text,
+                    props: { rowSpan },
+                };
+            }
+        },
+
+        {
+            title: 'Select',
+            dataIndex: 'select',
+            key: 'select',
+            render: (text, record, index) => {
+                const rowSpan = getRowSpanForColumn(dataSource, index, 'topicName');
+        
+                // Only show the checkbox for the first row of the span
+                if (rowSpan > 0) {
+                    return {
+                        children: (
+                            <input
+                            style={{width:"18px", height:"18"}}
+                                type="checkbox"
+                                checked={selectedTopics.includes(record.topicName)} // Check if the topic is selected
+                                onChange={() => handleSelectTopic(record.topicName)} // Call the handler with the topic name
+                            />
+                        ),
+                        props: { rowSpan }, // Apply the row span to merge cells
+                    };
+                }
+        
+                // Return null for spanned rows to hide checkboxes and prevent cell borders
+                return {
+                    children: null,
+                    props: { rowSpan: 0 }, // Ensure no additional rows for the spanned cells
+                };
+            }
+        },
+                { 
+            title: 'Content Name', 
+            dataIndex: 'contentName', 
+            key: 'contentName' 
+        },
+        { 
+            title: 'Delivery Type', 
+            dataIndex: 'deliveryType', 
+            key: 'deliveryType' 
+        },
+        { 
+            title: 'Training Format', 
+            dataIndex: 'trainingFormat', 
+            key: 'trainingFormat' 
+        },
+
+        {
+            title: 'Schedule Date',
+            dataIndex: 'date',
+            key: 'date',
+            render: (text, record, index) => {
+                const rowSpan = getRowSpanForColumn(dataSource, index, 'date');
+                return {
+                    children: text,
+                    props: { rowSpan },
+                };
+            }
+        },
+
+        { 
+            title: 'Schedule Duration (h)', 
+            dataIndex: 'duration', 
+            key: 'duration' 
+        }
+    ];
+
     return (
         <div className="container">
             <div className="row mb-3">
@@ -176,10 +277,8 @@ const TabTraining = () => {
                         style={{ width: '150px' }}
                         className="select-training"
                         placeholder="Select Class"
-                        onChange={value => {
-                            const selected = classes.find(c => c.classId === value);
-                            setSelectedClass(selected);
-                        }}
+                        onChange={handleClassChange}
+
                     >
                         {classes.map(cls => (
                             <Option key={cls.classId} value={cls.classId}>
@@ -195,10 +294,7 @@ const TabTraining = () => {
                         style={{ width: '150px' }}
                         className="select-training"
                         placeholder="Select Module"
-                        onChange={value => {
-                            const selected = modules.find(m => m.moduleId === value);
-                            setSelectedModule(selected);
-                        }}
+                        onChange={handleModuleChange} 
                         disabled={!selectedClass}
                     >
                         {modules.map(mod => (
@@ -292,29 +388,9 @@ const TabTraining = () => {
                         </div>
                     </div>
                     <Table
-                        dataSource={filteredDataSource}
-                        columns={[
-                            { title: 'Topic', dataIndex: 'topicName', key: 'topicName' },
-                            {
-                                title: '',
-                                dataIndex: 'select',
-                                key: 'select',
-                                render: (text, record) => (
-                                    <input
-                                        type="checkbox"
-                                        checked={selectedTopics.includes(record)}
-                                        onChange={() => handleSelectTopic(record)}
-                                    />
-                                )
-                            },
-                            { title: 'Content Name', dataIndex: 'contentName', key: 'contentName' },
-                            { title: 'Delivery Type', dataIndex: 'deliveryType', key: 'deliveryType' },
-                            { title: 'Training Format', dataIndex: 'trainingFormat', key: 'trainingFormat' },
-                            { title: 'Schedule Date', dataIndex: 'date', key: 'date' },
-                            { title: 'Schedule Duration (h)', dataIndex: 'duration', key: 'duration', width: '10%' },
-
-                        ]}
-                    />
+    dataSource={filteredDataSource}
+    columns={columns}
+    />
                     <Button
                         type="primary"
                         onClick={showModal}
@@ -341,15 +417,10 @@ const TabTraining = () => {
                         <div>
                             <p>Date:</p>
                             <DatePicker onChange={handleModalDateChange} />
-                            {errorDate && <span className='text-danger'>{errorDate}</span>}
                         </div>
                         <div>
                             <p>Duration</p>
-                            <Input placeholder='Enter Duration' type='number'
-                                onChange={(e) => setDuration(e.target.value)}
-                            />
-                            {errorDuration && <span className='text-danger'>{errorDuration}</span>}
-
+                            <Input placeholder='Enter Duration' type='number' />
                         </div>
                         <div>
                             <p>Topics:</p>

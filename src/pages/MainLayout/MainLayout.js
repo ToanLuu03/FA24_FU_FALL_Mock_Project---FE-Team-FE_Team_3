@@ -1,13 +1,22 @@
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
 import { MenuFoldOutlined, MenuUnfoldOutlined } from '@ant-design/icons';
-import { Layout, Typography, Button, Menu } from 'antd';
+import { Layout } from 'antd';
 import { GroupIcon, CapIcon, ClockIcon, BookIcon, QuestionIcon, TrainerManagementIcon } from '../../components/CustomIcons';
-import { RxAvatar } from "react-icons/rx";
-import { IoIosNotifications } from "react-icons/io";
-import './MainLayout.css';
-
-const { Sider, Header, Content } = Layout;
+import {
+  StyledSider,
+  LogoContainer,
+  Logo,
+  StyledMenu,
+  StyledHeader,
+  CollapseButton,
+  AvatarButton,
+  StyledContent,
+  StyledAvatar,
+  StyledNotification,
+  HeaderRight
+} from './MainLayout.styled';
+import { Typography } from 'antd';
 
 const MainLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
@@ -20,26 +29,23 @@ const MainLayout = () => {
   const wrapIcon = (icon) => React.cloneElement(icon, { style: { width: 24, height: 24, marginRight: '15px' } });
 
   return (
-    <Layout style={{ height: '100vh' }}>
-      <Sider
-        className="styled-sider"
+    <Layout>
+      <StyledSider
         trigger={null}
         collapsible
         collapsedWidth={0}
         width={240}
         collapsed={collapsed}
       >
-        <div className="logo-container">
-          <img
-            className="logo"
+        <LogoContainer>
+          <Logo
             src="https://fams-test.fa.edu.vn/assets/images/logo/logo.svg"
             alt="Logo"
           />
-        </div>
-        <Menu
-          className="styled-menu"
+        </LogoContainer>
+        <StyledMenu
           mode="inline"
-          selectedKeys={[selectedKey]}
+          selectedKeys={[selectedKey]} // Điều chỉnh key dựa trên state
           items={[
             {
               key: '1',
@@ -54,7 +60,7 @@ const MainLayout = () => {
             {
               key: '3',
               icon: wrapIcon(<TrainerManagementIcon />),
-              label: <a href="/trainer/trainer_management">Trainer Management</a>,
+              label: <a href="/trainer/portal">Trainer Management</a>,
             },
             {
               key: '4',
@@ -73,29 +79,28 @@ const MainLayout = () => {
             },
           ]}
         />
-      </Sider>
+      </StyledSider>
 
       <Layout>
-        <Header className="styled-header">
-          <Button
-            className="collapse-button"
+        <StyledHeader>
+          <CollapseButton
             type="text"
             icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
             onClick={() => setCollapsed(!collapsed)}
           />
-          <div className="header-right">
+          <HeaderRight>
             <Typography.Text>Welcome to TrangMNQ</Typography.Text>
-            <Button shape="circle" className="avatar-button">
-              <RxAvatar className="styled-avatar" />
-            </Button>
-            <Button shape="circle" className="avatar-button">
-              <IoIosNotifications className="styled-notification" />
-            </Button>
-          </div>
-        </Header>
-        <Content className="styled-content">
+            <AvatarButton shape='circle'>
+              <StyledAvatar />
+            </AvatarButton>
+            <AvatarButton shape='circle'>
+              <StyledNotification />
+            </AvatarButton>
+          </HeaderRight>
+        </StyledHeader>
+        <StyledContent>
           <Outlet context={{ selectMenuItem }} />
-        </Content>
+        </StyledContent>
       </Layout>
     </Layout>
   );

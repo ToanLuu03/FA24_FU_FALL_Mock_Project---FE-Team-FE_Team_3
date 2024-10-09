@@ -1,5 +1,20 @@
-.modal-container {
-    margin-top: 10px;
+.date-time-picker-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.date-time-picker-container .arrow-separator {
+    margin: 0 10px;
+    font-size: 18px;
+}
+
+.recur-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding: 10px;
 }
 
 .recurring-container {
@@ -7,9 +22,26 @@
 }
 
 .recurring-label {
-    margin-right: 10px;
+    margin-right: 5px;
 }
 
 .checkbox-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3 columns */
+    grid-auto-rows: auto; /* Let the rows adjust based on content */
+    gap: 10px;
     margin-top: 10px;
 }
+
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
+}
+
+.modal-footer .ant-btn {
+    margin-left: 10px;
+}
+
+

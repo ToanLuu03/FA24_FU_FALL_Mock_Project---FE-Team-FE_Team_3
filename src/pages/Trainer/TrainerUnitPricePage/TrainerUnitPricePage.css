@@ -3,6 +3,8 @@
   margin: 20px 0;
   font-family: Arial, sans-serif;
 } */
+
+
 .trainer-container-unit {
   height: calc(100vh - 200px);
   overflow-y: scroll;
@@ -19,6 +21,15 @@
 
 .trainer-container-unit {
   -ms-overflow-style: none;
+}
+
+*/ .custom-scroll .ant-table-body {
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.custom-scroll .ant-table-body::-webkit-scrollbar {
+  display: none;
 }
 
 /* Table styling */
@@ -54,12 +65,3 @@
   background-color: #e6e6e6;
 
 }
-
-/* .data-row:nth-child(odd) {
-  background-color: #fafafa; 
-  
-}
-
-.data-row:nth-child(even) {
-  background-color: #ffffff; 
-} */

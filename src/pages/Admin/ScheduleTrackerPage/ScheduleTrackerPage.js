@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { Input, Select } from 'antd';
+import { Input, Select, Button, Modal } from 'antd';
 import './ScheduleTrackerPage.css';
 import { classOptions, moduleOptions, options, trainerOptions } from '../../../data/Schedule';
-import { fetchScheduleData } from '../../../api/ScheduleTracker_api';
+import { fetchDataTrainer } from '../../../api/ScheduleTracker_api';
 import { SelectBox, SelectOption } from '../../../components/Admin/Selectbox/SelectBox';
 import Date from '../../../components/Admin/SelectDate/Date';
-import { SearchOutlined } from '@ant-design/icons';
+import { SearchOutlined, FilterOutlined } from '@ant-design/icons';
+import { useOutletContext } from 'react-router-dom';
 
 function ScheduleTracker() {
   const [selectedMethod, setSelectedMethod] = useState(null);
@@ -22,6 +23,12 @@ function ScheduleTracker() {
   const [scheduleData, setScheduleData] = useState([]);
   const [filteredScheduleData, setFilteredScheduleData] = useState([]);
   const [searchTerm, setSearchTerm] = useState(""); // Thêm searchTerm state
+  const [showFilter, setShowFilter] = useState(false); // Thêm showFilter state
+
+  const { selectMenuItem } = useOutletContext();
+  useEffect(() => {
+    selectMenuItem('4');
+  }, [selectMenuItem]);
 
   const handleSelectMethod = (value) => {
     setSelectedMethod(value);
@@ -65,9 +72,6 @@ function ScheduleTracker() {
     setShowTable(true);
   };
 
-
-
-
   const handleSelectDelivery = (values) => {
     setSelectedDelivery(values);
     filterScheduleData('contentDeliveryType', values);
@@ -86,7 +90,6 @@ function ScheduleTracker() {
     resetFilters('status');
   };
 
-
   // set null options
   const resetFilters = (activeFilter) => {
     if (activeFilter !== 'delivery') setSelectedDelivery(null);
@@ -97,21 +100,42 @@ function ScheduleTracker() {
 
   useEffect(() => {
     const getScheduleData = async () => {
-      const result = await fetchScheduleData();
-      setScheduleData(result);
-      const deliveryTypes = [...new Set(result.map(item => item.contentDeliveryType))];
-      const deliveryOptions = deliveryTypes.map(type => ({ label: type, value: type }));
-      const StatusTypes = [...new Set(result.map(item => item.contentName))];
-      const statusOptions = StatusTypes.map(type => ({ label: type, value: type }));
-      const TrainingTypes = [...new Set(result.map(item => item.contentTrainingFormat))];
-      const trainingOptions = TrainingTypes.map(type => ({ label: type, value: type }));
-      setTrainingOptions(trainingOptions);
-      setStatusOptions(statusOptions);
-      setDeliveryOptions(deliveryOptions);
-      setFilteredScheduleData(result); // Initial data load
+      try {
+        const result = await fetchDataTrainer();
+        setScheduleData(result);
+        console.log('result', result)
+        if (Array.isArray(result)) {
+          const deliveryTypes = [...new Set(result.map(item => item.contentDeliveryType).filter(Boolean))];
+          const deliveryOptions = deliveryTypes.map(type => ({ label: type, value: type }));
+          const statusTypes = [...new Set(result.map(item => item.contentName).filter(Boolean))];
+          const statusOptions = statusTypes.map(type => ({ label: type, value: type }));
+          const trainingTypes = [...new Set(result.map(item => item.contentTrainingFormat).filter(Boolean))];
+          const trainingOptions = trainingTypes.map(type => ({ label: type, value: type }));
+
+          // Update state
+          setTrainingOptions(trainingOptions);
+          setStatusOptions(statusOptions);
+          setDeliveryOptions(deliveryOptions);
+          setFilteredScheduleData(result); // Initial data load
+        } else {
+          console.error('Result is not an array:', result);
+        }
+      } catch (error) {
+        console.error('Error fetching schedule data:', error);
+      }
     };
     getScheduleData();
   }, []);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <div>
@@ -163,8 +187,57 @@ function ScheduleTracker() {
           )}
         </div>
       </div>
+
       {selectedModule && (
-        <div className="d-flex " style={{ width: '', gap: 5 }}>
+
+        <div className=' search1 d-flex'>
+          <div className='d-flex '>
+            <Input
+              placeholder='Search...'
+              className='search'
+              style={{ marginLeft: 0, width: '772px' }}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+            <div className='icon'>
+              <a href='#1'><SearchOutlined className='search-icon' /></a>
+            </div>
+          </div>
+
+          {/* Thay đổi showFilter khi nhấn vào biểu tượng Filter */}
+          <div className='col-2'>
+            <Button type="primary"
+              onClick={showModal}
+              className='button'
+              style={{ padding: 0, borderRadius: 0, boxShadow: 0, }}
+            >
+              <FilterOutlined
+                className='icon-filter'
+                onClick={() => setShowFilter(!showFilter)}
+                style={{ display: 'flex', justifyContent: 'center' }}
+              />
+            </Button>
+          </div>
+        </div>
+      )}
+
+      <Modal title="Basic Modal" open={isModalOpen} footer={null} closable={false} onCancel={handleCancel}>
+        <div className='tracker-by'>
+          <div className='options'>
+            <span className='text'>Status</span> <br />
+            <SelectOption
+              options={statusOptions}
+              value={selectedStatus}
+              onChange={handleSelectStatus}
+              placeholder="Please select status..."
+              showSearch
+              filterStatus={(input, option) =>
+                option.label.toLowerCase().includes(input.toLowerCase())
+              }
+              style={{ width: '100%' }}
+            />
+          </div>
+
           <div className='options'>
             <span className='text'>Delivery Type</span> <br />
             <SelectOption
@@ -186,24 +259,9 @@ function ScheduleTracker() {
               options={trainingOptions}
               value={selectedTraining}
               onChange={handleSelectTraining}
-              placeholder="Please select delivery..."
+              placeholder="Please select training format..."
               showSearch
               filterTraining={(input, option) =>
-                option.label.toLowerCase().includes(input.toLowerCase())
-              }
-              style={{ width: '100%' }}
-            />
-          </div>
-
-          <div className='options'>
-            <span className='text'>Status</span> <br />
-            <SelectOption
-              options={statusOptions}
-              value={selectedStatus}
-              onChange={handleSelectStatus}
-              placeholder="Please select delivery..."
-              showSearch
-              filterStatus={(input, option) =>
                 option.label.toLowerCase().includes(input.toLowerCase())
               }
               style={{ width: '100%' }}
@@ -228,29 +286,9 @@ function ScheduleTracker() {
             <Date />
           </div>
 
-          {/* Search */}
-          <div>
-            <span className='text'>Search</span>
-            <br />
-            <div className='d-flex search1'>
-              <Input
-                placeholder='Search...'
-                className='search'
-                style={{ marginLeft: 0 }}
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-              <div className='icon'>
-                <a href='#1'><SearchOutlined className='search-icon' /></a>
-              </div>
-            </div>
-          </div>
-
-
-
-
         </div>
-      )}
+
+      </Modal>
 
       {showTable && (
         <div>
@@ -275,9 +313,9 @@ function ScheduleTracker() {
               {filteredScheduleData.length > 0 ? (
                 filteredScheduleData.map((item, index) => (
                   <tr key={index}>
-                    <td>{item.Schedule}</td>
+                    <td>{item.className}</td>
                     <td>{item.moduleName}</td>
-                    <td>{item.TrainerId}</td>
+                    <td>{item.trainerId}</td>
                     <td>{item.contentDeliveryType}</td>
                     <td>{item.contentTrainingFormat}</td>
                     <td>{item.contentName}</td>
