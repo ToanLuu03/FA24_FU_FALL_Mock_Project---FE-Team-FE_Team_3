@@ -23,101 +23,70 @@
     margin-bottom: 20px;
 }
 
-/* Filter items */
 .filters-container .filter-item {
     flex: 1 1 150px;
-    /* Each filter takes equal width with a max of 150px */
     max-width: 150px;
-    /* Restrict each filter's width to 150px */
     margin-bottom: 10px;
-    /* Margin below to avoid overlap */
 }
 
-/* Specific margin for status and site filters */
 .filters-container .status-filter,
 .filters-container .site-filter {
     margin-bottom: 15px;
-    /* Increase space below these fields */
 }
 
-/* FormControl (Select dropdown) and TextField styles */
 .filters-container .MuiFormControl-root,
 .filters-container .MuiTextField-root {
     width: 100%;
-    /* Ensure all filters have equal width */
 }
 
-/* Style the Select and TextField input */
 .MuiSelect-root,
 .MuiTextField-root input {
     padding: 12px;
-    /* Ensure padding is sufficient for visibility */
     font-size: 22px;
     font-family: 'Roboto', sans-serif;
 }
 
-/* Input label style */
 .MuiInputLabel-root {
     color: #777;
     z-index: 1;
-    /* Ensure label appears above other content */
     background-color: white;
-    /* Ensure label background is solid for visibility */
     padding: 0 4px;
-    /* Padding around the label for clarity */
 }
 
-/* Table container styles */
 .MuiTableContainer-root {
     border: 1px solid #ddd;
     border-radius: 8px;
     overflow-x: auto;
-    /* Enable horizontal scrolling for tables on smaller screens */
 }
 
-/* Table header */
 .MuiTableHead-root th {
     font-weight: bold;
-    /* Bold */
     background-color: #f0f0f0;
-    /* Background color */
     color: #333;
-    /* Text color */
     text-align: center;
-    /* Center align text */
     padding: 10px;
-    /* Padding */
     border-right: 1px solid #ddd;
-    /* Right border */
 }
 
-/* Table body */
 .MuiTableBody-root td {
     padding: 12px;
-    /* Padding */
     border-right: 1px solid #ddd;
-    /* Right border */
 }
 
-/* Responsive table styles */
 @media (max-width: 768px) {
     .responsive-hide {
         display: none;
-        /* Hide specific columns on small screens */
     }
 
     .ant-table-cell.responsive-hide {
         display: none;
-        /* Hide table headers for specific columns */
     }
 }
 
-/* Table row hover effect */
 .MuiTableRow-root:hover {
     background-color: #f5f5f5;
 }
 
-/* Table cell head */
 .MuiTableCell-head {
     font-weight: bold;
     color: #444;
@@ -125,14 +94,12 @@
     text-align: left;
 }
 
-/* Table cell body */
 .MuiTableCell-body {
     font-family: 'Roboto', sans-serif;
     color: #555;
     text-align: left;
 }
 
-/* Chip styles for status indicators */
 .MuiChip-root {
     font-weight: bold;
     padding: 5px 10px;
@@ -149,7 +116,6 @@
     color: white;
 }
 
-/* Add Trainer button */
 .add-trainer-btn {
     margin-top: 20px;
     background-color: #3f51b5;
@@ -163,71 +129,52 @@
     background-color: #303f9f;
 }
 
-/* Pagination controls */
 .pagination-controls {
     display: flex;
     justify-content: space-between;
     padding: 10px;
 }
 
-/* Checkbox styles */
 .ant-checkbox-wrapper {
     font-size: 16px;
-    /* Increase font size */
 }
 
 .ant-checkbox {
     transform: scale(1.5);
-    /* Enlarge checkbox */
 }
 
-/* Header list */
 .Header-list {
     display: flex;
     justify-content: space-between;
-    /* Spread items out */
     align-items: center;
-    /* Center items vertically */
     padding: 10px;
 }
 
 .add-trainer-btn {
     margin-left: auto;
-    /* Align button to the right */
 }
 
-/* Responsive adjustments for filters container */
 @media (max-width: 768px) {
     .filters-container {
         flex-direction: column;
-        /* Stack filters vertically */
         gap: 15px;
-        /* Increase the gap between filter items */
     }
 
-    /* Adjust filter item width for smaller screens */
     .filters-container .filter-item {
         flex: 1 1 100%;
-        /* Make filters take full width on small screens */
         max-width: 100%;
-        /* Ensure filters do not exceed container width */
     }
 }
 
-/* Responsive adjustments for the header and button */
 @media (max-width: 768px) {
     .add-trainer-btn {
         width: 100%;
-        /* Full width on small screens */
         margin-top: 15px;
-        /* Margin to separate from other content */
     }
 
     .Header-list {
         flex-direction: column;
-        /* Stack header items vertically */
         align-items: flex-start;
-        /* Align items to the left */
     }
 
 }
