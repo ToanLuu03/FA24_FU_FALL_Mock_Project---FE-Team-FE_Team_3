@@ -23,9 +23,9 @@ export const fetchDataTrainer = async () => {
         }
 
     } catch (error) {
-        console.error('Error fetching classes:', error);
-        throw new Error('Failed to fetch classes');
+        console.error('Error fetching trainer data:', error.response?.data || error.message, error);
     }
+
 };
 
 const extractContents = (trainerData) => {
