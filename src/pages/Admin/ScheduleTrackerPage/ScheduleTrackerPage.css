@@ -103,7 +103,6 @@
 
 
 
-/* Responsive breakpoints */
 @media (max-width: 768px) {
     .classname {
         flex-direction: column;
@@ -194,12 +193,10 @@
 table {
     width: 100%;
     border-collapse: collapse;
-    /* Remove double borders */
 }
 
 table thead th {
     background-color: #f3f3f3;
-    /* Light background for headers */
     color: #333;
     font-weight: bold;
     text-align: left;
@@ -208,34 +205,27 @@ table thead th {
 
 table tbody td {
     padding: 10px;
-    /* Space inside each cell */
     text-align: left;
-    /* Align content to the left */
 }
 
 table tbody tr:nth-child(odd) {
     background-color: #fff;
-    /* White for odd rows */
 }
 
 table tr {
     border-bottom: 1px solid #ddd;
-    /* Bottom border for rows */
 }
 
 table th,
 table td {
     border-right: 1px solid #ddd;
-    /* Right border for cells */
 }
 
 table th:last-child,
 table td:last-child {
     border-right: none;
-    /* Remove right border for last column */
 }
 
 table {
     border: 1px solid #ddd;
-    /* Outer table border */
 }

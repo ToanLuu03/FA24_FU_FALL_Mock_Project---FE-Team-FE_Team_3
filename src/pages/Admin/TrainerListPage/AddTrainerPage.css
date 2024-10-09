@@ -1,29 +1,29 @@
 .add-skill-button {
-    background-color: #fff; /* Màu nền trắng */
-    border-color: #d9d9d9; /* Màu viền xám */
-    color: #1890ff; /* Màu chữ xanh */
-    font-weight: bold; /* Chữ đậm */
-    border-radius: 4px; /* Bo góc */
-    min-width: 100%; /* Đặt chiều rộng tối thiểu */
+    background-color: #fff;
+    border-color: #d9d9d9; 
+    color: #1890ff; 
+    font-weight: bold; 
+    border-radius: 4px;
+    min-width: 100%;
 
-    padding: 8px 16px; /* Padding cho nút */
-    transition: background-color 0.3s ease, color 0.3s ease; /* Hiệu ứng chuyển màu */
+    padding: 8px 16px; 
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .add-skill-button:hover {
-    background-color: #e6f7ff; /* Màu nền khi hover */
-    border-color: #40a9ff; /* Màu viền khi hover */
-    color: #0050b3; /* Màu chữ khi hover */
+    background-color: #e6f7ff; 
+    border-color: #40a9ff; 
+    color: #0050b3;
 }
 
 .add-skill-button:focus {
-    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2); /* Hiệu ứng khi nút được focus */
+    box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.2); 
 }
 
 
 .button-container {
     display: flex;
-    justify-content: flex-start; /* Căn chỉnh các phần tử về bên trái */
+    justify-content: flex-start; 
     align-items: center;
     width: 80%;
     padding: 10px;
@@ -33,29 +33,29 @@
 .bt-right {
     display: flex;
     gap: 10px;
-    margin-left: auto; /* Đẩy các nút sang bên phải */
-    position: absolute; /* Đảm bảo nó nằm cố định ở bên phải */
-    right: 40px; /* Căn chỉnh về phía bên phải */
-    transform: translateY(-50%); /* Giúp căn giữa hoàn toàn */
+    margin-left: auto;
+    position: absolute; 
+    right: 40px; 
+    transform: translateY(-50%); 
 }
 
 
 .cancel-button {
-    color: red; /* Màu chữ cho nút Cancel */
+    color: red; 
 }
 
 .save-button {
-    background-color: #6366f1; /* Màu nền cho nút Save */
-    color: white; /* Màu chữ cho nút Save */
+    background-color: #6366f1;
+    color: white;
 }
 
-/* Thêm các hiệu ứng hover nếu cần */
+
 .cancel-button:hover {
-    background-color: #ff4d4f; /* Màu nền khi hover trên Cancel */
-    color: white; /* Màu chữ khi hover */
+    background-color: #ff4d4f; 
+    color: white; 
 }
 
 .save-button:hover {
-    background-color: #4c51bf; /* Màu nền khi hover trên Save */
-    color: white; /* Màu chữ khi hover */
+    background-color: #4c51bf; 
+    color: white; 
 }
