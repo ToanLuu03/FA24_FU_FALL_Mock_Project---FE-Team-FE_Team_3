@@ -30,7 +30,6 @@
   font-weight: bold;
 }
 
-/* General Info grid layout */
 .general-info-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -40,7 +39,6 @@
   border-radius: 5px;
 }
 
-/* General Info row */
 .general-info-row {
   display: flex;
   justify-content: space-between;
@@ -51,17 +49,14 @@
   box-sizing: border-box;
 }
 
-/* Remove border from the last row */
 .general-info-row:last-of-type {
   border-bottom: none;
 }
 
-/* Right border except for the last column */
 .general-info-row:not(:nth-child(3n)) {
   border-right: 1px solid #e8e8e8;
 }
 
-/* Label styles */
 .general-info-label {
   width: 40%;
   background-color: #f0f0f0;
@@ -71,7 +66,6 @@
   color: #333;
 }
 
-/* Value styles */
 .general-info-value {
   width: 60%;
   text-align: right;
@@ -81,7 +75,6 @@
   color: #666;
 }
 
-/* Professional Skills Table */
 .skills-table {
   width: 100%;
   border-collapse: collapse;
@@ -101,7 +94,6 @@
   font-weight: bold;
 }
 
-/* Skills Input Fields */
 .skills-input,
 .general-input,
 .general-select,
@@ -110,7 +102,6 @@
   box-sizing: border-box;
 }
 
-/* Button group for editing skills */
 .edit-buttons {
   display: flex;
   gap: 30px;

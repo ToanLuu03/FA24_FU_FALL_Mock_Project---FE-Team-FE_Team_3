@@ -13,4 +13,3 @@ export const login = async (username, password) => {
         throw new Error('Failed to log in');
     }
 };
-//a

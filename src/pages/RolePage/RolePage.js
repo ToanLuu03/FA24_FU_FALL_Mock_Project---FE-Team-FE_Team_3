@@ -22,7 +22,7 @@ const RolePage = () => {
         try {
             const role = await login(values.username, values.password);
             console.log('Role API: ', role)
-            if (role === values.role || role) {
+            if (role === values.role || role === 'TRAINER,FAMS_ADMIN') {
                 dispatch(setRole(values.role));
                 if (values.role === 'CLASS_ADMIN') {
                     if (role === 'CLASS_ADMIN' || role === 'TRAINER,FAMS_ADMIN') {
@@ -40,7 +40,7 @@ const RolePage = () => {
 
         }
         catch (error) {
-            setErrorMessage('Username or Password is wrong');
+            setErrorMessage('Username or Password is wrong!');
 
         } finally {
             setLoading(false);

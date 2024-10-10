@@ -25,20 +25,20 @@ const TabReport = () => {
                 });
 
                 if (response.data.success) {
-                    const classes = [];
+                    const classes = new Set(); // Use a Set to avoid duplicates
                     const modules = new Set(); // Use a Set to avoid duplicates
 
                     response.data.data.forEach(item => {
-                        classes.push({
+                        classes.add(JSON.stringify({
                             id: item.classId,
                             name: item.className,
-                        });
+                        }));
 
                         modules.add(item.moduleName); // Add module names to Set
                     });
 
                     // Update state with unique class and module options
-                    setClassOptions(classes);
+                    setClassOptions(Array.from(classes).map((classStr) => JSON.parse(classStr))); // Convert Set to Array and parse the stringified objects
                     setModuleOptions(Array.from(modules).map((name, index) => ({ id: index, name }))); // Convert Set to Array
                 } else {
                     message.error(response.data.message);

@@ -6,9 +6,9 @@
 
 .button-container {
     display: flex;
-    align-items: center; /* Vertically center the items */
-    justify-content: flex-start; /* Align items to the left */
-    margin-right: 1100px; /* Add some space above the button */
+    align-items: center; 
+    justify-content: flex-start; 
+    margin-right: 1100px; 
   }
   
   

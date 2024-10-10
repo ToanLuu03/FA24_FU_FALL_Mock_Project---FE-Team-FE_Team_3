@@ -1,19 +1,19 @@
 .add-skill-button {
-    background-color: #fff;
+    background-color: #fff; 
     border-color: #d9d9d9; 
     color: #1890ff; 
     font-weight: bold; 
-    border-radius: 4px;
-    min-width: 100%;
+    border-radius: 4px; 
+    min-width: 100%; 
 
     padding: 8px 16px; 
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition: background-color 0.3s ease, color 0.3s ease; 
 }
 
 .add-skill-button:hover {
     background-color: #e6f7ff; 
-    border-color: #40a9ff; 
-    color: #0050b3;
+    border-color: #40a9ff;
+    color: #0050b3; 
 }
 
 .add-skill-button:focus {
@@ -33,7 +33,7 @@
 .bt-right {
     display: flex;
     gap: 10px;
-    margin-left: auto;
+    margin-left: auto; 
     position: absolute; 
     right: 40px; 
     transform: translateY(-50%); 
@@ -46,12 +46,12 @@
 
 .save-button {
     background-color: #6366f1;
-    color: white;
+    color: white; 
 }
 
 
 .cancel-button:hover {
-    background-color: #ff4d4f; 
+    background-color: #ff4d4f;
     color: white; 
 }
 

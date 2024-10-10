@@ -219,13 +219,16 @@ table tr {
 table th,
 table td {
     border-right: 1px solid #ddd;
+    /* Right border for cells */
 }
 
 table th:last-child,
 table td:last-child {
     border-right: none;
+    /* Remove right border for last column */
 }
 
 table {
     border: 1px solid #ddd;
+    /* Outer table border */
 }

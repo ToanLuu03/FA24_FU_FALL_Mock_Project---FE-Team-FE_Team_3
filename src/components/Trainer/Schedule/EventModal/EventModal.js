@@ -1,114 +1,97 @@
-import React from 'react';
-import { Modal, DatePicker, Switch, InputNumber, Checkbox, Button } from 'antd';
-import dayjs from 'dayjs';
-import './EventModal.css';
+import React from "react";
+import { Modal, Button, DatePicker, Switch, InputNumber, Checkbox } from "antd";
 
-const EventModal = ({
-    visible,
-    event,
-    isEditMode,
-    recurVisible,
-    recurEvery,
-    recurringDays,
-    setRecurVisible,
-    setRecurEvery,
-    handleOk,
-    handleCancel,
-    handleStartTimeChange,
-    handleEndTimeChange,
-    handleRecurringDaysChange,
+const { RangePicker } = DatePicker;
+
+const CreateNewEvent = ({
+    isModalVisible,
+    onCancel,
+    onSave,
+    newEventDates,
+    setNewEventDates,
+    isRecurring,
+    setIsRecurring,
+    recurrenceWeeks,
+    setRecurrenceWeeks,
+    selectedDays,
+    setSelectedDays,
+    isEditing,
 }) => {
-    const disablePastDates = (current) => {
-        return current && current < dayjs().startOf('day');
-    };
-
-    const disablePastTimes = (selectedDate) => {
-        if (!selectedDate || selectedDate.isAfter(dayjs(), 'day')) {
-            return {};
-        }
-        const currentHour = dayjs().hour();
-        const currentMinute = dayjs().minute();
-        return {
-            disabledHours: () => Array.from({ length: 24 }, (_, hour) => hour).filter(hour => hour < currentHour),
-            disabledMinutes: (selectedHour) =>
-                selectedHour === currentHour ? Array.from({ length: 60 }, (_, minute) => minute).filter(minute => minute < currentMinute) : [],
-        };
-    };
-
-    const disableCheckbox = (day) => {
-        const dayIndex = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].indexOf(day);
-        const todayIndex = dayjs().day();
-        return dayIndex < todayIndex;
-    };
-
     return (
         <Modal
-            title={isEditMode ? "FREE TIME REGISTRATION" : "Create Event"}
-            open={visible}
-            onOk={handleOk}
-            onCancel={handleCancel}
-            footer={null}
+            title={isEditing ? "Edit Event" : "Free Time Registration"}
+            open={isModalVisible}
+            onOk={onSave}
+            onCancel={onCancel}
+            footer={[
+                <Button key="cancel" onClick={onCancel}>
+                    Cancel
+                </Button>,
+                <Button key="submit" type="primary" onClick={onSave} style={{ backgroundColor: "#6F4DE7", borderColor: "#6F4DE7" }}>
+                    Save
+                </Button>,
+            ]}
         >
-            <div className="date-time-picker-container">
-                <DatePicker
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+                <RangePicker
                     showTime
-                    format="DD-MM-YYYY HH:mm"
-                    value={event?.startTime ? dayjs(event.startTime) : null}
-                    onChange={handleStartTimeChange}
-                    placeholder="Start time"
-                    disabledDate={disablePastDates}
-                    disabledTime={(current) => disablePastTimes(current)}
+                    format="YYYY-MM-DD HH:mm"
+                    value={newEventDates}
+                    onChange={(value) => setNewEventDates(value)}
+                    style={{ width: "70%" }}
                 />
-                <span className="arrow-separator">→</span>
-                <DatePicker
-                    showTime
-                    format="DD-MM-YYYY HH:mm"
-                    value={event?.endTime ? dayjs(event.endTime) : null}
-                    onChange={handleEndTimeChange}
-                    placeholder="End time"
-                    disabledDate={disablePastDates}
-                    disabledTime={(current) => disablePastTimes(current)}
-                />
-
-                <div className="recur-container">
-                    <Switch checked={recurVisible} onChange={setRecurVisible} /> Repeat
+                <div>
+                    <Switch checked={isRecurring} onChange={setIsRecurring} />
+                    <span style={{ marginLeft: 8 }}>Repeat</span>
                 </div>
             </div>
 
-
-
-            {recurVisible && (
-                <div className="recurring-container">
-                    <label className="recurring-label">Recur every</label>
-                    <InputNumber
-                        min={1}
-                        value={recurEvery}
-                        onChange={(value) => setRecurEvery(value)}
-                    />
-                    <span>Week(s) on:</span>
-                    <div className="checkbox-container">
-                        {['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'].map((day) => (
-                            <Checkbox
-                                key={day}
-                                checked={recurringDays[day]}
-                                onChange={(e) => handleRecurringDaysChange(day, e.target.checked)}
-                                disabled={disableCheckbox(day)} // Disable checkboxes for past days
-                            >
-                                {day}
-                            </Checkbox>
-                        ))}
+            {isRecurring && (
+                <>
+                    <div style={{ marginTop: "20px" }}>
+                        <label>Recur every</label>
+                        <InputNumber
+                            min={1}
+                            value={recurrenceWeeks}
+                            onChange={setRecurrenceWeeks}
+                            style={{ width: "60px", marginLeft: "10px", marginRight: "10px" }}
+                        />
+                        <span>Week(s) on:</span>
                     </div>
-                </div>
-            )}
 
-            <div className="modal-footer">
-                <Button danger onClick={handleCancel}>Cancel</Button>
-                <Button type="primary" onClick={handleOk}>
-                    {isEditMode ? "Save" : "Create"}
-                </Button>
-            </div>
+                    <Checkbox.Group
+                        value={selectedDays}
+                        onChange={setSelectedDays}
+                        style={{ marginTop: "20px" }}
+                    >
+                        <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between" }}>
+                            <div style={{ width: "45%", marginBottom: "10px" }}>
+                                <Checkbox value="0">Monday</Checkbox>
+                            </div>
+                            <div style={{ width: "45%", marginBottom: "10px" }}>
+                                <Checkbox value="1">Tuesday</Checkbox>
+                            </div>
+                            <div style={{ width: "45%", marginBottom: "10px" }}>
+                                <Checkbox value="2">Wednesday</Checkbox>
+                            </div>
+                            <div style={{ width: "45%", marginBottom: "10px" }}>
+                                <Checkbox value="3">Thursday</Checkbox>
+                            </div>
+                            <div style={{ width: "45%", marginBottom: "10px" }}>
+                                <Checkbox value="4">Friday</Checkbox>
+                            </div>
+                            <div style={{ width: "45%", marginBottom: "10px" }}>
+                                <Checkbox value="5">Saturday</Checkbox>
+                            </div>
+                            <div style={{ width: "45%", marginBottom: "10px" }}>
+                                <Checkbox value="6">Sunday</Checkbox>
+                            </div>
+                        </div>
+                    </Checkbox.Group>
+                </>
+            )}
         </Modal>
     );
 };
 
-export default EventModal;
+export default CreateNewEvent;

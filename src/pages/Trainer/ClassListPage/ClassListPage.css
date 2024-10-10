@@ -1,5 +1,4 @@
 .layout-container {
-    /* min-height: 200vh; */
     height: calc(100vh - 200px);
     overflow-y: scroll;
     overflow-x: hidden;
@@ -39,9 +38,7 @@
 
 .ant-tag {
     border-radius: 20px;
-    /* Increased border radius */
     padding: 4px 12px;
-    /* Optional: Adjust padding for better appearance */
 }
 
 .status-in-progress {
